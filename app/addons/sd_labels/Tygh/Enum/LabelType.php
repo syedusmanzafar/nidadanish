@@ -1,0 +1,2 @@
+<?php
+ namespace Tygh\Enum; class LabelType { public const CUSTOM = 'custom'; public const NEW = 'new'; public const HIT = 'hit'; public const FREESHIPPING = 'freeshipping'; public const DISCOUNT = 'discount'; public const ONLYAT = 'onlyat'; public const OUTOFSTOCK = 'outofstock'; public const PRODUCT_RUNNING_OUT = 'product_running_out'; public const ON_BACKORDER = 'on_backorder'; }

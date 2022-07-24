@@ -1,0 +1,1 @@
+{style src="addons/cp_automaticaly_create_account/styles.less"}

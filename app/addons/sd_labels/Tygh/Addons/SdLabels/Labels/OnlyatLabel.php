@@ -1,0 +1,2 @@
+<?php
+ declare(strict_types=1); namespace Tygh\Addons\SdLabels\Labels; class OnlyatLabel extends Label { public function getHint(): ?string { return __('sd_labels.hints.onlyat'); } public function checkConditions(): bool { return fn_allowed_for('ULTIMATE'); } public function prepareName(): string { $company_name = fn_get_company_name(fn_get_runtime_company_id()); return str_replace('[company]', $company_name, $this->getName()); } } 

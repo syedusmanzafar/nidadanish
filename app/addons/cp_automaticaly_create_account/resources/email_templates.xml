@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<email_templates scheme="1.0">
+    <templates>
+        <item>
+            <code><![CDATA[cp_ac_confirm_email]]></code>
+            <area><![CDATA[C]]></area>
+            <status><![CDATA[A]]></status>
+            <subject/>
+            <default_subject><![CDATA[{{ company_name }}: {{ __("cp_ac_please_confirme_your_email") }}]]></default_subject>
+            <template/>
+            <default_template><![CDATA[{{ snippet("header") }}
+                
+{{ __("cp_ac_to_activate_email_follow_link") }}:<br /><br />
+        <a href="{{ url }}">{{ __("cp_ac_activation_link") }}</a>
+
+{{ snippet("footer") }}]]></default_template>
+            <params_schema/>
+            <params/>
+            <addon><![CDATA[cp_automaticaly_create_account]]></addon>
+        </item>
+    </templates>
+    <snippets/>
+</email_templates>

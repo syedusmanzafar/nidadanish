@@ -1,0 +1,2 @@
+<?php
+ defined('BOOTSTRAP') or die('Access denied'); $schema[] = [ 'author' => 'simtechdev', 'extension' => 'sd_labels', 'scripts' => [ '/js/addons/sd_labels/pwajet/4.10.19.c06fedd1.labelsRenderSubscriber.js', '/js/addons/sd_labels/pwajet/4.10.19.aaa6e6c1.labelsSettingParserSubscriber.api.parse.settings.js', '/js/addons/sd_labels/pwajet/4.10.19.d3cd8f1b.labelsParserSubscriber.api.parse.product.js', '/js/addons/sd_labels/pwajet/4.10.19.80ddf2a9.labelsFactory.js', ] ]; return $schema; 

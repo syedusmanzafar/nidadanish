@@ -1,0 +1,2 @@
+<?php
+ namespace Tygh\Enum; class LabelStatus { public const ACTIVE = 'A'; public const THEME_LABEL = 'T'; public const DISABLED = 'D'; public static function getAll() { $oClass = new \ReflectionClass(__CLASS__); return $oClass->getConstants(); } } 

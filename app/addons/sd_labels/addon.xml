@@ -1,0 +1,270 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>sd_labels</id>
+    <version>4.10.22</version>
+    <priority>15000</priority>
+    <position>1</position>
+    <status>active</status>
+    <has_icon>Y</has_icon>
+    <default_language>en</default_language>
+    <supplier>Simtech Development</supplier>
+    <supplier_link>http://www.simtechdev.com</supplier_link>
+    <authors>
+        <author>
+            <name>Simtech Development</name>
+            <email>sales@simtechdev.com</email>
+            <url>http://www.simtechdev.com</url>
+        </author>
+    </authors>
+    <compatibility>
+        <core_version>
+            <min>4.10.0</min>
+        </core_version>
+        <php_version>
+            <min>7.1</min>
+        </php_version>
+    </compatibility>
+    <settings edition_type="ROOT,ULT:VENDOR">
+        <sections>
+            <section id="section_general">
+                <items>
+                    <item id="header_label_type_text">
+                        <type>header</type>
+                    </item>
+                    <item id="text_label_max_items">
+                        <type>selectbox</type>
+                        <default_value>3</default_value>
+                        <variants>
+                            <item id="1"/>
+                            <item id="2"/>
+                            <item id="3"/>
+                            <item id="4"/>
+                            <item id="5"/>
+                        </variants>
+                    </item>
+                    <item id="text_label_is_column">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="text_label_round_corners">
+                        <type>hidden</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="text_label_corner_radius">
+                        <type>hidden</type>
+                        <default_value>3</default_value>
+                    </item>
+                    <item id="text_label_round_corners_tmpl">
+                        <type>template</type>
+                        <default_value>text_label_round_corners.tpl</default_value>
+                    </item>
+
+                    <item id="header_label_type_graphic">
+                        <type>header</type>
+                    </item>
+                    <item id="graphic_label_max_items">
+                        <type>selectbox</type>
+                        <default_value>3</default_value>
+                        <variants>
+                            <item id="1"/>
+                            <item id="2"/>
+                            <item id="3"/>
+                            <item id="4"/>
+                            <item id="5"/>
+                        </variants>
+                    </item>
+                    <item id="graphic_label_is_column">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                </items>
+            </section>
+            <section id="section_product_detail_page">
+                <items>
+                    <item id="detail_product_text_label_font_size">
+                        <type>input</type>
+                        <default_value>16</default_value>
+                    </item>
+                    <item id="detail_product_graphic_label_image_width">
+                        <type>input</type>
+                        <default_value>40</default_value>
+                    </item>
+                    <item id="detail_product_graphic_label_image_height">
+                        <type>input</type>
+                        <default_value>40</default_value>
+                    </item>
+                    <item id="detail_product_labels_overlay">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="detail_product_labels_position" parent_id="detail_product_labels_overlay">
+                        <type>selectbox</type>
+                        <default_value>BR</default_value>
+                        <variants>
+                            <item id="TL"/>
+                            <item id="TR"/>
+                            <item id="BL"/>
+                            <item id="BR"/>
+                        </variants>
+                    </item>
+                    <item id="detail_product_labels_hide_labels_on_hover_over_image" parent_id="detail_product_labels_overlay">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                </items>
+            </section>
+            <section id="section_products_list_layouts">
+                <items>
+                    <item id="products_viewer_hint">
+                        <type>template</type>
+                        <default_value>products_list_view_hint.tpl</default_value>
+                    </item>
+                    <item id="products_viewer_text_label_font_size">
+                        <type>input</type>
+                        <default_value>12</default_value>
+                    </item>
+                    <item id="products_viewer_graphic_label_image_width">
+                        <type>input</type>
+                        <default_value>40</default_value>
+                    </item>
+                    <item id="products_viewer_graphic_label_image_height">
+                        <type>input</type>
+                        <default_value>40</default_value>
+                    </item>
+                    <item id="products_multicolumns_template_viewer_show_labels">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="products_without_options_template_viewer_show_labels">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="products_short_list_template_viewer_show_labels">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="products_viewer_labels_overlay">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="products_multicolumns_template_viewer_labels_position" parent_id="products_viewer_labels_overlay">
+                        <type>selectbox</type>
+                        <default_value>TL</default_value>
+                        <variants>
+                            <item id="TL"/>
+                            <item id="TR"/>
+                        </variants>
+                    </item>
+                    <item id="products_without_options_template_viewer_labels_position" parent_id="products_viewer_labels_overlay">
+                        <type>selectbox</type>
+                        <default_value>BR</default_value>
+                        <variants>
+                            <item id="TL"/>
+                            <item id="TR"/>
+                            <item id="BL"/>
+                            <item id="BR"/>
+                        </variants>
+                    </item>
+                    <item id="products_multicolumns_template_viewer_hide_labels_on_hover_over_product_card" parent_id="products_viewer_labels_overlay">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="products_without_options_template_viewer_hide_labels_on_hover_over_image" parent_id="products_viewer_labels_overlay">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                </items>
+            </section>
+            <section id="section_cron">
+                <items>
+                    <item id="cron">
+                        <type>template</type>
+                        <default_value>cron.tpl</default_value>
+                    </item>
+                    <item id="header_cron_label_new">
+                        <type>header</type>
+                    </item>
+                    <item id="cron_days_when_product_is_new">
+                        <type>input</type>
+                        <default_value>10</default_value>
+                    </item>
+                    <item id="header_cron_label_hit">
+                        <type>header</type>
+                    </item>
+                    <item id="cron_count_of_hits">
+                        <type>input</type>
+                        <default_value>5</default_value>
+                    </item>
+                    <item id="cron_hit_periods_of_counting">
+                        <type>selectbox</type>
+                        <variants>
+                            <item id="period_day"/>
+                            <item id="period_week"/>
+                            <item id="period_month"/>
+                            <item id="period_all"/>
+                        </variants>
+                        <default_value>period_day</default_value>
+                    </item>
+                </items>
+            </section>
+            <section id="section_pwajet_extension">
+                <items>
+                    <item id="active_for_storefront">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+    <queries>
+        <item for="install">
+            CREATE TABLE IF NOT EXISTS ?:product_sd_labels (
+                product_id mediumint(8) unsigned NOT NULL,
+                label_id mediumint(8) unsigned NOT NULL,
+                is_auto char(1) NOT NULL DEFAULT 'N',
+                from_parent char(1) NOT NULL DEFAULT 'N',
+                PRIMARY KEY (product_id, label_id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install">
+            CREATE TABLE IF NOT EXISTS ?:sd_labels (
+                label_id mediumint(8) unsigned NOT NULL auto_increment,
+                background_color varchar(32) NOT NULL DEFAULT '',
+                text_color varchar(32) NOT NULL DEFAULT '',
+                display_type varchar(8) NOT NULL DEFAULT 'text',
+                label_type varchar(32) NOT NULL DEFAULT '',
+                attachable char NOT NULL DEFAULT 'Y',
+                position smallint(5)  unsigned DEFAULT 0,
+                available_for_vendors char NOT NULL DEFAULT 'N',
+                status char NOT NULL DEFAULT 'A',
+                additional_settings TEXT,
+                PRIMARY KEY (label_id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install">
+            CREATE TABLE IF NOT EXISTS ?:sd_labels_descriptions (
+                label_id mediumint(8) unsigned NOT NULL,
+                name varchar(32) NOT NULL DEFAULT '',
+                tooltip_content varchar(255) NOT NULL default '',
+                lang_code char(2) NOT NULL DEFAULT '',
+                PRIMARY KEY (label_id,lang_code)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install" editions="MULTIVENDOR">
+            ALTER TABLE ?:vendor_plans ADD sd_available_for_vendors char NOT NULL DEFAULT 'N';
+        </item>
+        <item for="uninstall" editions="MULTIVENDOR">
+             ALTER TABLE ?:vendor_plans DROP sd_available_for_vendors;
+        </item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:product_sd_labels</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:sd_labels</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:sd_labels_descriptions</item>
+        <item type="file">database/default_labels.sql</item>
+    </queries>
+    <functions>
+        <item for="install">fn_sd_labels_install</item>
+        <item for="uninstall">fn_sd_labels_delete_labels_filters</item>
+        <item for="uninstall">fn_sd_labels_delete_labels_images</item>
+    </functions>
+<marketplace_product_id>1500</marketplace_product_id><marketplace_license_number>PRODUCTLABELS-2U0M-NIYH-WX33-4P87</marketplace_license_number></addon>

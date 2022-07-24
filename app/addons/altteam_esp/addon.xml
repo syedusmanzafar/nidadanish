@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+	<id>altteam_esp</id>
+	<version>4.4_1.2.7</version>
+	<priority>2800</priority>
+	<position>100</position>
+	<status>active</status>
+	<has_icon>Y</has_icon>
+	<supplier>Alt-team</supplier>
+	<supplier_link>http://alt-team.com/</supplier_link>
+	<authors>
+		<author>
+			<name>WI</name>
+			<email>DevelopWI@gmail.com</email>
+		</author>
+	</authors>
+	<compatibility>
+		<core_version>
+			<min>4.4.0</min>
+		</core_version>
+	</compatibility>
+    <default_language>en</default_language>
+	<functions>
+		<item for="install">fn_activate_easy_scroll_pagination</item>
+	</functions>
+	<settings>
+		<sections>
+			<section id="general">
+				<name>General</name>
+				<items>
+					<item id="add_watch_more">
+						<type>checkbox</type>
+						<default_value>N</default_value>
+					</item>
+					<item id="num_watch_more">
+						<type>input</type>
+						<default_value>3</default_value>
+					</item>
+					<item id="up_everywhere">
+						<type>checkbox</type>
+						<default_value>Y</default_value>
+					</item>
+					<item id="use_category">
+						<type>checkbox</type>
+						<default_value>Y</default_value>
+					</item>
+				</items>
+			</section>
+		</sections>
+	</settings>
+    <queries>
+
+    </queries>
+</addon>

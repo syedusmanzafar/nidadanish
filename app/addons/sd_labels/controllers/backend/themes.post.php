@@ -1,0 +1,2 @@
+<?php
+ use Tygh\Addons\SdLabels\Labels\Label; use Tygh\Enum\YesNo; defined('BOOTSTRAP') or die('Access denied'); if ($_SERVER['REQUEST_METHOD'] === 'POST') { if ($mode === 'set' && isset($_REQUEST['allow_overwrite'])) { fn_sd_labels_add_blocks_settings(); } } 

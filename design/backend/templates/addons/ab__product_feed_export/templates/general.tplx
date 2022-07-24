@@ -1,0 +1,65 @@
+{** general **}
+<?xml version="1.0" encoding="{$abpfe_p1}"?>
+<catalog date="{"Y-m-d H:i"|date}">
+    <shop>
+        <name>{$settings.Company.company_name}</name>
+        <url>{$settings.Company.company_website}</url>
+{* Currencies *}
+{if $currencies && is_array($currencies)}
+        <currencies>
+{foreach $currencies as $currency_code => $currency}
+            <currency id="{$currency_code}" rate="{$currency.coefficient}"/>
+{/foreach}
+        </currencies>
+{/if}
+{* Categories *}
+{if $categories && is_array($categories)}
+        <categories>
+{foreach $categories as $category_id => $category}
+            <category id="{$category_id}"{if $category.parent_id>0 && $categories.{$category.parent_id}} parent_id="{$category.parent_id}"{/if}>{$category.category}</category>
+{/foreach}
+        </categories>
+{/if}
+    </shop>
+{* Products *}
+    <items>
+{$params = ['items_per_page' => 1000, 'categories' => $categories, 'get_images' => true, 'get_features' => true]}
+{while $products = fn__pfe_get_offers($datafeed, $params)}
+{foreach $products as $product}
+        <item id="{$product.product_id}"{if $product.variation_group_id} group_id="{$product.variation_group_id}"{/if}>
+            <url>{$product.url}</url>
+            <price>{$product.price}</price>
+            <categoryId>{$product.category_id}</categoryId>
+{if $product.images}
+{foreach $product.images as $image_url}
+            <image>{$image_url}</image>
+{/foreach}
+{/if}
+            <name>{$product.product}</name>
+            <description><![CDATA[ {if $product.short_description}{$product.short_description nofilter}{else}{$product.full_description|strip_tags|truncate:320 nofilter}{/if} ]]></description>
+{if $product.brand}
+            <brand>{$product.brand}</brand>
+{/if}
+{if $product.features}
+            <features>
+{foreach $product.features as $feature}
+                <feature>
+                    <name>{$feature.name}</name>
+                    <value>{$feature.value}</value>
+                </feature>
+{/foreach}
+            </features>
+{/if}
+        </item>
+{/foreach}
+{/while}
+    </items>
+    <params>
+{if $abpfe_p1}
+        <parametr>{$abpfe_p1}</parametr>
+{/if}
+{if $abpfe_p2}
+        <parametr>{$abpfe_p2}</parametr>
+{/if}
+    </params>
+</catalog>

@@ -1,0 +1,52 @@
+Legend:
+[+] - new feature/improvement
+[*] - functionality changes
+[!] - bugfix
+
+Version 1.1, 11 December 2019
+
+[!] robots.txt were generated with error due to new name of the getRobotsDataByCompanyId function
+[+] Adaptation for 4.11 versions was made
+[+] Placeholders are processed in the breadcrumbs now 
+
+Version 1.2, 30 December 2019
+
+[!] Error was displayed on Multi-Vendor. Fixed
+
+Version 1.3, 6 January 2020
+
+[!] Incorrectly formatted URLs were returned by ajax request for subdomains. Fixed
+
+Version 1.4, 10 January 2020
+
+[!] In Multi-Vendor wrong subdomain URLs were display on the list of subdomains. Fixed
+
+Version 1.5, 10 July 2020
+
+[+] Adaptation with custom headers addon was made
+[+] Adaptation with GEO Maps addon was made
+
+Version 1.6, 10 July 2020
+
+[!] Unique content for blocks was not saved in 4.11.4. Fixed
+
+Version 1.7, 24 July 2020
+
+[!] Ajax loaded blocks in UniTheme2 displayed wrong URLs. Fixed
+
+Version 1.8, 26 August 2020
+
+[!] Domain selector was not displayed in Multi-Vendor 4.11.4. Fixed
+[!] Subdomain was not added to sitemap in Multi-Vendor 4.11.4. Fixed
+
+Version 1.9, 15 September 2020
+
+[+] Compatibility with the "AB: Extended meta tags" module added
+
+Version 1.10, 9 December 2020
+
+[+] Geo Maps module takes into account selected subdomain now
+
+Version 1.11, 17 February 2021
+
+[!] Layout of 404 page was broken with enabled addon. Fixed

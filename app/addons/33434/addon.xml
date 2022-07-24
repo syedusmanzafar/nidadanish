@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+	<id>ecl_purchase_orders</id>
+	<version>1.0</version>
+    <default_language>ru</default_language>
+	<priority>7500</priority>
+    <supplier>eCom Labs</supplier>
+    <supplier_link>https://www.ecom-labs.com</supplier_link>
+    <status>active</status>
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+    <default_language>en</default_language><authors>
+        <author>
+            <name>eCom Labs</name>
+            <email>contact@ecom-labs.com</email>
+            <url>https://www.ecom-labs.com</url>
+            <phone>+7 963 234 30 03</phone>
+        </author>
+    </authors>
+        <queries>
+            <item>
+                ALTER TABLE `?:companies`
+                ADD COLUMN `payment_terms` varchar(255) NOT NULL default ''
+            </item>
+    </queries>
+</addon>

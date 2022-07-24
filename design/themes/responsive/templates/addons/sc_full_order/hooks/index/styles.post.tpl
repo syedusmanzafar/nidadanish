@@ -1,0 +1,1 @@
+{style src="addons/sc_full_order/styles.less"}

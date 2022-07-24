@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>an_one_order</id>
+    <version>1.0</version>
+    <priority>50000</priority>
+    <position>100</position>
+    <status>disabled</status>
+    <default_language>en</default_language>
+    <authors>
+        <author>
+            <name>Cart-Power</name>
+            <email>sales@cart-power.com</email>
+            <url>http://cart-power.com</url>
+        </author>
+    </authors>
+</addon>

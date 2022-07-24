@@ -1,0 +1,404 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>cp_extended_marketing</id>
+    <version>1.10</version>
+    <priority>2500</priority>
+    <position>130</position>
+    <default_language>en</default_language>
+    <status>disabled</status>
+    <has_icon>Y</has_icon>
+    <authors>
+        <author>
+            <name>Cart-Power</name>
+            <email>sales@cart-power.com</email>
+            <url>http://cart-power.com</url>
+        </author>
+    </authors>
+    <compatibility>
+        <dependencies>cp_addons_manager</dependencies>
+    </compatibility>
+    <supplier>Cart-Power</supplier>
+    <supplier_link>https://cart-power.com</supplier_link>
+    <settings edition_type="ROOT,ULT:VENDOR,STOREFRONT">
+        <sections>
+            <section id="general">
+                <items>
+                    <item id="licensekey" edition_type="ROOT">
+                        <type>input</type>
+                        <default_value></default_value>
+                    </item>
+                    <item id="log_mail_send">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="log_test_mail_send">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="email_image_width">
+                        <type>input</type>
+                        <default_value>160</default_value>
+                    </item>
+                    <item id="clear_logs_day" edition_type="ROOT">
+                        <type>input</type>
+                        <default_value>30</default_value>
+                    </item>
+                    <item id="add_unsubscribe_link">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="ask_about_reviews">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="check_stock_email">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="time_for_type">
+                        <type>input</type>
+                        <default_value>3</default_value>
+                    </item>
+                    <item id="smtp_settings">
+                        <type>header</type>
+                    </item>
+                    <item id="smtp_server">
+                        <type>input</type>
+                        <default_value></default_value>
+                    </item>
+                    <item id="smtp_user">
+                        <type>input</type>
+                        <default_value></default_value>
+                    </item>
+                    <item id="smtp_pass">
+                        <type>input</type>
+                        <default_value></default_value>
+                    </item>
+                    <item id="smtp_crypt">
+                        <type>selectbox</type>
+                        <default_value>none</default_value>
+                        <variants>
+                            <item id="none">
+                            </item>
+                            <item id="tls">
+                            </item>
+                            <item id="ssl">
+                            </item>
+                        </variants>
+                    </item>
+                    <item id="smtp_uath">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="cron_settings">
+                        <type>header</type>
+                    </item>
+                    <item id="cron_pass" edition_type="ROOT">
+                        <type>input</type>
+                        <default_value>CRON_email_SEND</default_value>
+                    </item>
+                    <item id="emails_send_cron" edition_type="ROOT">
+                        <type>input</type>
+                        <default_value>100</default_value>
+                    </item>
+                     <item id="cron_info_txt" edition_type="ROOT">
+                        <type>info</type>
+                        <handler>fn_cp_em_cron_run_info</handler>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+    <queries>
+        <item>DROP TABLE IF EXISTS ?:cp_em_notices;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_notice_descriptions;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_promocode_expire;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_logs;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_aband_cart_sent;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_feedback_sent;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_targeted_sent;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_viewed_sent;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_user_subscriptions;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_statistics;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_placeholders;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_placeholders_descriptions;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_audiences;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_audiences_descriptions;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_viewed_products;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_send_form;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_em_send_queue;</item>
+        
+        <item>
+            CREATE TABLE `?:cp_em_notices` (
+                `notice_id` mediumint(8) unsigned NOT NULL auto_increment,
+                `company_id` mediumint(8) unsigned NOT NULL default '0',
+                `status` char(1) NOT NULL default 'A',
+                `type` char(1) NOT NULL default 'A',
+                `timestamp` int(11) unsigned NOT NULL default '0',
+                `send_after` smallint(5) unsigned NOT NULL default '2',
+                `generate_promo` char(1) NOT NULL default 'N',
+                `promotion_id` mediumint(8) unsigned NOT NULL default '0',
+                `promocode_duration` smallint(5) unsigned NOT NULL default '0',
+                `to_date` int(11) unsigned NOT NULL default '0',
+                `from_date` int(11) unsigned NOT NULL default '0',
+                `usergroup_ids` varchar(255) NOT NULL default '0',
+                `is_test` char(1) NOT NULL default 'N',
+                `test_email` varchar(255) NOT NULL default '',
+                `hidden_email` varchar(255) NOT NULL default '',
+                `order_statuses` varchar(255) NOT NULL default '',
+                `add_pixel` char(1) NOT NULL default 'N',
+                `for_vendors` char(1) NOT NULL default 'N',
+                `review_type` char(1) NOT NULL default 'P',
+                `action_type` char(1) NOT NULL default 'B',
+                `before_after` char(1) NOT NULL default 'A',
+                `date_field_id` mediumint(8) unsigned NOT NULL default '0',
+                `purchase_period` smallint(5) unsigned NOT NULL default '30',
+                `audience_id` int(11) unsigned NOT NULL default '0',
+                `products_limit` smallint(5) unsigned NOT NULL default '5',
+                `list_id` int(11) unsigned NOT NULL default '0',
+                `page_id` int(11) unsigned NOT NULL default '0',
+                PRIMARY KEY  (`notice_id`)
+            ) Engine=MyISAM DEFAULT CHARSET UTF8;
+        </item>
+        <item>
+            CREATE TABLE `?:cp_em_notice_descriptions` (
+                `notice_id` mediumint(8) unsigned NOT NULL default '0',
+                `name` varchar(255) NOT NULL default '',
+                `subject` text,
+                `message` text,
+                `lang_code` char(2) NOT NULL default '',
+                UNIQUE KEY `notice_id` (`notice_id`,`lang_code`)
+            ) Engine=MyISAM DEFAULT CHARSET UTF8;
+        </item>
+        <item>
+            CREATE TABLE `?:cp_em_promocode_expire` (
+                `notice_id` mediumint(8) unsigned NOT NULL default '0',
+                `promotion_id` mediumint(8) unsigned NOT NULL default '0',
+                `coupon_code` varchar(60) NOT NULL default '',
+                `generate_time` int(11) unsigned NOT NULL default '0',
+                `expire_time` int(11) unsigned NOT NULL default '0',
+                `user_id` mediumint(8) unsigned NOT NULL default '0',
+                `email` varchar(255) NOT NULL default '',
+                `used` smallint(5) unsigned NOT NULL default '0',
+                `removed` char(1) NOT NULL default 'N',
+                `order_id` mediumint(8) unsigned NOT NULL default '0',
+                UNIQUE KEY `promo_code_mail` (`email`,`coupon_code`)
+            ) Engine=MyISAM DEFAULT CHARSET UTF8;
+        </item>
+        <item>
+            CREATE TABLE `?:cp_em_logs` (
+                `log_id` int(11) unsigned NOT NULL auto_increment,
+                `notice_id` mediumint(8) unsigned NOT NULL default '0',
+                `session_id` varchar(64) NOT NULL default '',
+                `status` char(1) NOT NULL default 'S',
+                `is_test` char(1) NOT NULL default 'N',
+                `timestamp` int(11) unsigned NOT NULL default '0',
+                `email` varchar(255) NOT NULL default '',
+                `message` text,
+                PRIMARY KEY  (`log_id`),
+                KEY `notice_id` (`notice_id`)
+            ) Engine=InnoDB DEFAULT CHARSET UTF8;
+        </item>
+        <item>
+            CREATE TABLE IF NOT EXISTS `?:cp_em_aband_cart_sent` (
+                `notice_id` int(11) unsigned NOT NULL default '0',
+                `user_id` int(11) unsigned NOT NULL default '0',
+                `timestamp` int(11) unsigned NOT NULL default '0',
+                `session_id` varchar(64) NOT NULL,
+                `hash` varchar(255) NOT NULL default '',
+                `is_open` char(1) NOT NULL default 'N',
+                UNIQUE KEY `notice_session` (`notice_id`,`session_id`),
+                KEY `notice_id` (`notice_id`),
+                KEY `timestamp` (`timestamp`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        </item>
+        <item>
+            CREATE TABLE IF NOT EXISTS `?:cp_em_feedback_sent` (
+                `notice_id` int(11) unsigned NOT NULL default '0',
+                `order_id` int(11) unsigned NOT NULL default '0',
+                `timestamp` int(11) unsigned NOT NULL default '0',
+                `hash` varchar(255) NOT NULL default '',
+                `is_open` char(1) NOT NULL default 'N',
+                UNIQUE KEY `notice_order` (`notice_id`,`order_id`),
+                KEY `notice_id` (`notice_id`),
+                KEY `order_id` (`order_id`)
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+        </item>
+        <item>
+            CREATE TABLE IF NOT EXISTS `?:cp_em_targeted_sent` (
+                `notice_id` int(11) unsigned NOT NULL default '0',
+                `user_id` int(11) unsigned NOT NULL default '0',
+                `email` varchar(255) NOT NULL default '',
+                `timestamp` int(11) unsigned NOT NULL default '0',
+                `hash` varchar(255) NOT NULL default '',
+                `is_open` char(1) NOT NULL default 'N',
+                UNIQUE KEY `notice_user` (`notice_id`,`user_id`,`email`),
+                KEY `notice_id` (`notice_id`),
+                KEY `user_id` (`user_id`)
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+        </item>
+        <item>
+            CREATE TABLE IF NOT EXISTS `?:cp_em_viewed_sent` (
+                `notice_id` int(11) unsigned NOT NULL default '0',
+                `user_id` int(11) unsigned NOT NULL default '0',
+                `email` varchar(255) NOT NULL default '',
+                `timestamp` int(11) unsigned NOT NULL default '0',
+                `hash` varchar(255) NOT NULL default '',
+                `is_open` char(1) NOT NULL default 'N',
+                UNIQUE KEY `notice_user` (`notice_id`,`user_id`,`email`),
+                KEY `notice_id` (`notice_id`),
+                KEY `user_id` (`user_id`)
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+        </item>
+        <item>
+            CREATE TABLE `?:cp_em_user_subscriptions` (
+                `user_id` int(11) unsigned NOT NULL default '0',
+                `type` char(1) NOT NULL default 'A',
+                `status` char(1) NOT NULL default 'A',
+                `email` varchar(255) NOT NULL default '',
+                UNIQUE KEY `user_type_email` (`user_id`,`type`,`email`),
+                KEY `user_id` (`user_id`)
+            ) Engine=MyISAM DEFAULT CHARSET UTF8;
+        </item>
+        <item>
+            CREATE TABLE `?:cp_em_statistics` (
+                `company_id` mediumint(8) unsigned NOT NULL default '0',
+                `notice_id` mediumint(8) unsigned NOT NULL default '0',
+                `type` char(1) NOT NULL default 'A',
+                `notices_sent` mediumint(8) unsigned NOT NULL default '0',
+                `returns_form_email` mediumint(8) unsigned NOT NULL default '0',
+                `coupons_generated` mediumint(8) unsigned NOT NULL default '0',
+                `coupons_used` mediumint(8) unsigned NOT NULL default '0',
+                `orders_total_sent` decimal (12,2) NOT NULL DEFAULT '0.00',
+                `orders_placed` mediumint(8) unsigned NOT NULL default '0',
+                `orders_placed_total` decimal (12,2) NOT NULL DEFAULT '0.00',
+                `reviews_placed` mediumint(8) unsigned NOT NULL default '0',
+                `email_openings` mediumint(8) unsigned NOT NULL default '0',
+                UNIQUE KEY `company_notice` (`company_id`,`notice_id`)
+            ) Engine=MyISAM DEFAULT CHARSET UTF8;
+        </item>
+        <item for="install">
+            CREATE TABLE IF NOT EXISTS `?:cp_em_placeholders` (
+                `placeholder_id` int(11) NOT NULL AUTO_INCREMENT,
+                `company_id` mediumint(8) unsigned NOT NULL default '0',
+                `image_width` int(11) unsigned NOT NULL default '0',
+                `image_height` int(11) unsigned NOT NULL default '0',
+                `placeholder` varchar(255) NOT NULL,
+                `product_ids` text NOT NULL,
+                PRIMARY KEY (`placeholder_id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install">
+            CREATE TABLE IF NOT EXISTS `?:cp_em_placeholders_descriptions` (
+                `placeholder_id` int(11) NOT NULL default '0',
+                `name` varchar(255) NOT NULL,
+                `lang_code` char(2) NOT NULL,
+                UNIQUE KEY `placeholder_id` (`placeholder_id`,`lang_code`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;  
+        </item>
+        <item for="install">
+            CREATE TABLE IF NOT EXISTS `?:cp_em_audiences` (
+                `audience_id` int(11) NOT NULL AUTO_INCREMENT,
+                `company_id` mediumint(8) unsigned NOT NULL default '0',
+                `status` char(1) NOT NULL default 'A',
+                `params` longblob NOT NULL,
+                `type` char(1) NOT NULL default 'O',
+                PRIMARY KEY (`audience_id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install">
+            CREATE TABLE IF NOT EXISTS `?:cp_em_audiences_descriptions` (
+                `audience_id` int(11) unsigned NOT NULL default '0',
+                `name` varchar(255) NOT NULL,
+                `lang_code` char(2) NOT NULL,
+                UNIQUE KEY `audience_id` (`audience_id`,`lang_code`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;  
+        </item>
+        <item>
+            CREATE TABLE IF NOT EXISTS `?:cp_em_viewed_products` (
+                `user_id` int(11) unsigned NOT NULL default '0',
+                `email` varchar(255) NOT NULL default '',
+                `product_id` int(11) unsigned NOT NULL default '0',
+                `timestamp` int(11) unsigned NOT NULL default '0',
+                `company_id` int(11) unsigned NOT NULL default '0',
+                UNIQUE KEY `email_prod` (`email`,`product_id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item>
+            CREATE TABLE IF NOT EXISTS `?:cp_em_send_form` (
+                `page_id` int(11) unsigned NOT NULL default '0',
+                `email` varchar(255) NOT NULL default '',
+                `timestamp` int(11) unsigned NOT NULL default '0',
+                UNIQUE KEY `email_page` (`email`,`page_id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install" version="1.6">
+            CREATE TABLE IF NOT EXISTS `?:cp_em_send_queue` (
+                `queue_id` int(11) NOT NULL AUTO_INCREMENT,
+                `notice_id` mediumint(8) unsigned NOT NULL default '0',
+                `user_data` longblob NOT NULL,
+                `mail_data` longblob NOT NULL,
+                `rendered_data_hid` longblob NOT NULL,
+                `timestamp` int(11) unsigned NOT NULL default '0',
+                PRIMARY KEY (`queue_id`),
+                KEY `notice_id` (`notice_id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        </item>
+        
+        <item version="1.1">ALTER TABLE ?:cp_em_notices ADD send_from varchar(255) NOT NULL default '';</item>
+        <item version="1.1">ALTER TABLE ?:cp_em_notices ADD reply_to varchar(255) NOT NULL default '';</item>
+        <item version="1.1">ALTER TABLE ?:cp_em_feedback_sent ADD session_id varchar(64) NOT NULL;</item>
+        
+        <item version="1.3">ALTER TABLE ?:cp_em_viewed_sent ADD product_ids text NOT NULL;</item>
+        
+        <item version="1.6">ALTER TABLE ?:cp_em_aband_cart_sent ADD in_queue char(1) NOT NULL default 'N';</item>
+        <item version="1.6">ALTER TABLE ?:cp_em_feedback_sent ADD in_queue char(1) NOT NULL default 'N';</item>
+        <item version="1.6">ALTER TABLE ?:cp_em_targeted_sent ADD in_queue char(1) NOT NULL default 'N';</item>
+        <item version="1.6">ALTER TABLE ?:cp_em_viewed_sent ADD in_queue char(1) NOT NULL default 'N';</item>
+        
+        <item version="1.8">ALTER TABLE ?:cp_em_aband_cart_sent ADD email varchar(255) NOT NULL default '';</item>
+        <item version="1.8">CREATE INDEX email ON ?:cp_em_aband_cart_sent(email);</item>
+        
+        <item>ALTER TABLE ?:promotions ADD cp_em_for_notices CHAR(1) NOT NULL default 'N';</item>
+        <item>ALTER TABLE ?:orders ADD cp_em_changed_time int(11) unsigned NOT NULL default '0';</item>
+        <item>ALTER TABLE ?:orders ADD cp_em_send_email CHAR(1) NOT NULL default 'Y';</item>
+        <item>ALTER TABLE ?:order_details ADD cp_em_rated CHAR(1) NOT NULL default 'N';</item>
+        
+        <item editions="MULTIVENDOR,ULTIMATE">REPLACE INTO ?:privileges (privilege, is_default, section_id) VALUES ('view_cp_em_notices', 'Y', 'addons');</item>
+        <item editions="MULTIVENDOR,ULTIMATE">REPLACE INTO ?:privileges (privilege, is_default, section_id) VALUES ('manage_cp_em_notices', 'Y', 'addons');</item>
+        
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_notices;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_notice_descriptions;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_promocode_expire;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_logs;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_aband_cart_sent;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_feedback_sent;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_targeted_sent;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_viewed_sent;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_user_subscriptions;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_statistics;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_placeholders;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_placeholders_descriptions;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_audiences;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_audiences_descriptions;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_viewed_products;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_send_form;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_em_send_queue;</item>
+        
+        <item for="uninstall">ALTER TABLE ?:promotions DROP COLUMN cp_em_for_notices;</item>
+        <item for="uninstall">ALTER TABLE ?:orders DROP COLUMN cp_em_changed_time;</item>
+        <item for="uninstall">ALTER TABLE ?:orders DROP COLUMN cp_em_send_email;</item>
+        <item for="uninstall">ALTER TABLE ?:order_details DROP COLUMN cp_em_rated;</item>
+        
+        <item for="uninstall" editions="MULTIVENDOR,ULTIMATE">DELETE FROM ?:privileges WHERE privilege = 'view_cp_em_notices'</item>
+        <item for="uninstall" editions="MULTIVENDOR,ULTIMATE">DELETE FROM ?:privileges WHERE privilege = 'manage_cp_em_notices'</item>
+    </queries>
+    <email_templates type="file">resources/email_templates.xml</email_templates>
+    <functions>
+        <item for="install">fn_cp_extended_marketing_install</item>
+    </functions>
+    <scripts>
+        <item version="1.6">upgrades/1.6/scripts/post_script.php</item>
+        <item version="1.8">upgrades/1.8/scripts/post_script.php</item>
+    </scripts>
+</addon>

@@ -1,0 +1,2 @@
+<?php
+ use Tygh\Addons\SdLabels\Repositories\LabelRepository; defined('BOOTSTRAP') or die('Access denied'); if ($_SERVER['REQUEST_METHOD'] === 'POST') { return [CONTROLLER_STATUS_OK]; } if ($mode === 'manage' || $mode === 'picker') { $label_repository = Tygh::$app['addons.sd_labels.label_repository']; $labels = $label_repository->getLabelCollection()->toArray(); Tygh::$app['view']->assign('labels', $labels); if (isset($_REQUEST['search_labels'])) { Tygh::$app['view']->assign('search_labels', $_REQUEST['search_labels']); } } 

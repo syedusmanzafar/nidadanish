@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>csc_full_page_cache</id>    
+    <version>4.7.9</version>
+    <priority>4294967295</priority>
+    <position>0</position>
+    <status>active</status>
+	<default_language>en</default_language>	
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+	<supplier>cs-commerce.com</supplier>
+	<supplier_link>https://www.cs-commerce.com</supplier_link>   
+	<compatibility>       
+        <core_version>
+            <min>4.0.1</min>
+        </core_version>
+		<conflicts>ab__so_seohide</conflicts>
+    </compatibility>
+	<authors>
+       <author>
+          <name>CS-Commerce Software Solutions</name>
+           <email>info@cs-commerce.com</email>
+           <url>https://www.cs-commerce.com</url>
+       </author>
+   </authors>
+   	<settings edition_type="ROOT,ULT:VENDOR">
+		<sections>
+		<section id="general">
+			<name>General</name>
+			<items>
+				<item id="sys">					
+					<type>header</type>							
+				</item>
+			</items>
+		</section>
+		</sections>
+	</settings> 
+	
+	<queries>
+		<item for="install">
+			CREATE TABLE IF NOT EXISTS `?:csc_full_page_cache` (
+				`name` varchar(255) COLLATE 'utf8_general_ci' NOT NULL,
+				`company_id` mediumint(8) NOT NULL DEFAULT '0',
+				`value` varchar(255) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '',
+				UNIQUE (`name`, `company_id`)
+			 ) ENGINE='InnoDB' COLLATE 'utf8_general_ci';
+		</item>		
+		<item for="uninstall">
+			DROP TABLE IF EXISTS `?:csc_full_page_cache`;	
+		</item>	
+		<item>
+			CREATE TABLE IF NOT EXISTS `?:csc_full_page_cache_files` (
+			  `file_id` mediumint(10) NOT NULL AUTO_INCREMENT,
+			  `company_id` mediumint(8) NOT NULL DEFAULT '0',
+			  `category_id` mediumint(8) NOT NULL DEFAULT '0',
+			  `controller` varchar(25) NOT NULL,
+			  `path` varchar(128) NOT NULL,
+			  `file_hash` char(12) NOT NULL,
+			  `timestamp` int(11) NOT NULL DEFAULT '0',
+			  `request_uri` char(12) NOT NULL,
+			  PRIMARY KEY (`file_id`),
+			  UNIQUE KEY `file_hash` (`file_hash`),
+			  KEY `timestamp` (`timestamp`),
+			  KEY `controller` (`controller`),
+			  KEY `request_uri` (`request_uri`),
+			  KEY `company_id` (`company_id`),
+			  KEY `category_id` (`category_id`)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+		</item>		
+		<item for="uninstall">DROP TABLE IF EXISTS `?:csc_full_page_cache_files`;</item>		
+				
+		<item>
+			CREATE TABLE IF NOT EXISTS `?:csc_full_page_cache_files_products` (
+			  `file_id` mediumint(10) NOT NULL,
+			  `product_id` mediumint(8) NOT NULL,
+			  UNIQUE KEY `files_products` (`file_id`,`product_id`)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+		</item>		
+		<item for="uninstall">DROP TABLE IF EXISTS `?:csc_full_page_cache_files_products`;</item>		        
+			
+		<item for="install" editions="MULTIVENDOR,ULTIMATE">
+            REPLACE INTO ?:privileges (privilege, is_default, section_id) VALUES ('clear_fpc', 'Y', 'addons');
+        </item>
+        <item for="uninstall" editions="MULTIVENDOR,ULTIMATE">
+            DELETE FROM ?:privileges WHERE privilege ='clear_fpc';
+        </item>
+   	
+	</queries>
+	 <functions>
+	 	<item for="install">fn_csc_fpc_install</item>
+        <item for="uninstall">fn_csc_fpc_uninstall</item>
+    </functions>	
+</addon>

@@ -1,0 +1,2 @@
+<?php
+ declare(strict_types=1); namespace Tygh\Addons\SdLabels\Labels; class DiscountLabel extends Label { public function getHint(): ?string { return __('sd_labels.hints.discount'); } public function prepareName(array $extended_data): string { return str_replace('[discount]', $extended_data['discount'] . '%', $this->getName()); } } 

@@ -1,0 +1,2 @@
+<?php
+ use Tygh\Settings; defined('BOOTSTRAP') or die('Access denied'); if ($_SERVER['REQUEST_METHOD'] === 'POST') { if ($mode === 'update' && isset($_REQUEST['addon']) && $_REQUEST['addon'] === 'sd_labels') { fn_sd_label_update_settings($_REQUEST); } return [CONTROLLER_STATUS_OK]; } 

@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>cp_automaticaly_create_account</id>
+    <version>1.3</version>
+    <priority>5000</priority>
+    <position>100</position>
+    <status>disabled</status>
+    <default_language>en</default_language>
+    <has_icon>Y</has_icon>
+    <authors>
+        <author>
+            <name>Cart-Power</name>
+            <email>sales@cart-power.com</email>
+            <url>http://cart-power.com</url>
+        </author>
+    </authors>
+    <compatibility>
+        <dependencies>cp_addons_manager</dependencies>
+    </compatibility>
+    <supplier>Cart-Power</supplier>
+    <supplier_link>https://cart-power.com</supplier_link>
+    <settings edition_type="ROOT,ULT:VENDOR,STOREFRONT">
+        <sections>
+            <section id="general">
+                <items>
+                    <item id="licensekey">
+                        <type>input</type>
+                    </item>
+                    <item id="user_reg">
+                        <type>header</type>
+                    </item>
+                    <item id="work_mode">
+                        <type>selectbox</type>
+                        <default_value>ask_to_create</default_value>
+                        <variants>
+                            <item id="ask_to_create">
+                            </item>
+                            <item id="create_always">
+                            </item>
+                        </variants>
+                    </item>
+                    <item id="create_user_in_admin">
+                        <type>checkbox</type>
+                        <default_variant>N</default_variant>
+                    </item>
+                    <item id="show_pass_on_front">
+                        <type>checkbox</type>
+                        <default_variant>Y</default_variant>
+                    </item>
+                    <item id="email_activation">
+                        <type>checkbox</type>
+                        <default_variant>N</default_variant>
+                    </item>
+                    <item id="cron_settings">
+                        <type>header</type>
+                    </item>
+                    <item id="cron_pass" edition_type="ROOT">
+                        <type>input</type>
+                        <default_value>CRON_check_AFK</default_value>
+                    </item>
+                    <item id="delete_after_cron" edition_type="ROOT">
+                        <type>input</type>
+                        <default_value>30</default_value>
+                    </item>
+                    <item id="del_users" edition_type="ROOT">
+                        <type>selectbox</type>
+                        <default_value>no_orders</default_value>
+                        <variants>
+                            <item id="all">
+                            </item>
+                            <item id="no_orders">
+                            </item>
+                        </variants>
+                    </item>
+                     <item id="cron_info_txt" edition_type="ROOT">
+                        <type>info</type>
+                        <handler>fn_cp_ac_cron_check_info</handler>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+    <email_templates type="file">resources/email_templates.xml</email_templates>
+    <queries>
+        <item for="install" version="1.3">ALTER TABLE ?:users ADD cp_ac_activation CHAR(1) NOT NULL default 'N';</item>
+        <item for="install" version="1.3">ALTER TABLE ?:users ADD cp_ac_hash int(11) unsigned NOT NULL default '0';</item>
+        
+        <item for="uninstall">ALTER TABLE ?:users DROP COLUMN cp_ac_activation;</item>
+        <item for="uninstall">ALTER TABLE ?:users DROP COLUMN cp_ac_hash;</item>
+    </queries>
+    <scripts>
+        <item version="1.3">upgrades/1.3/scripts/post_script.php</item>
+    </scripts>
+</addon>

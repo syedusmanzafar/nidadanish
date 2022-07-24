@@ -1,0 +1,3 @@
+{if $smarty.request.user_type == 'C'}
+    <th><a class="cm-ajax" href="{"`$c_url`&sort_by=paid_orders&sort_order=`$search.sort_order_rev`"|fn_url}" data-ca-target-id={$rev}>{__("addons.sd_user_order_statistics.paid_orders")} {include file="common/tooltip.tpl" tooltip=__("addons.sd_user_order_statistics.paid_orders_tooltip")}{if $search.sort_by == "paid_orders"}{$c_icon nofilter}{else}{$c_dummy nofilter}{/if}</a></th>
+{/if}

@@ -1,0 +1,2 @@
+<?php
+ use Tygh\Registry; defined('BOOTSTRAP') or die('Access denied'); if ($_SERVER['REQUEST_METHOD'] == 'POST') { return; } if ($mode == 'checkout' && empty(Tygh::$app['session']['cart']['order_statistics']['refer_url'])) { Tygh::$app['session']['cart']['order_statistics']['direct_link'] = true; } 

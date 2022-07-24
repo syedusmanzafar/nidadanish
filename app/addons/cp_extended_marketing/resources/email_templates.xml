@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<email_templates scheme="1.0">
+    <templates>
+        <item>
+            <code><![CDATA[cp_em_notice]]></code>
+            <area><![CDATA[C]]></area>
+            <status><![CDATA[A]]></status>
+            <subject/>
+            <default_subject><![CDATA[{{ subject }}]]></default_subject>
+            <template/>
+            <default_template><![CDATA[{{ snippet("header") }}
+                
+{{ body }}
+
+{{ snippet("footer") }}]]></default_template>
+            <params_schema/>
+            <params/>
+            <addon><![CDATA[cp_extended_marketing]]></addon>
+        </item>
+    </templates>
+    <snippets/>
+</email_templates>

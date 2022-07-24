@@ -1,0 +1,2 @@
+<?php
+ defined('BOOTSTRAP') || die('Access denied'); if ($_SERVER['REQUEST_METHOD'] === 'POST') { return [CONTROLLER_STATUS_OK]; } if ($mode === 'quick_view' || $mode === 'view') { $sd_labels_display_settings = fn_sd_labels_get_display_settings($controller, $mode); Tygh::$app['view']->assign(compact('sd_labels_display_settings')); } 

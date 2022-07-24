@@ -1,0 +1,186 @@
+.cp_suborders{
+    //background: @checkout_selected_control_background !important;
+    padding:5px;
+}
+
+
+.cp_show_suborders{
+
+    font-size:15px;
+    color: red;
+}
+
+
+.cp_one_order_border{
+    background: #f8f8f8;
+    border-bottom-color: #e1e1e1;
+    margin-top: 10px;
+    padding: 10px;
+    border-bottom-style: groove;
+    border-top-style: dashed;
+    border-width: thin;
+}
+.ty-orders-detail-vendor{
+    padding-bottom: 15px;
+    margin: 15px;
+    &:not(:last-child) {
+        border-bottom: 1px dashed @font;
+    }
+    
+    &__header {
+        padding: 10px;
+        background:  @checkout_selected_control_background;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &-lc {
+            font-size: 15px;
+            line-height: 1.2;
+            flex: 1;
+            margin-right: 10px;
+            a {
+                font-size: inherit;
+                &:hover {
+                    color: @color_links_hover;
+                }
+            }
+        }
+        &-rc {
+            width: 40px;
+            flex-shrink: 0;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            cursor: pointer;
+            &:hover {
+                color: @color_links_hover;
+            }
+            i {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+            &.open i {
+                -webkit-transform: rotate(0);
+                transform: rotate(0);
+            }
+        }
+    }
+}
+.ty-orders-summary__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.ty-orders-summary__wrapper {
+    padding-right: 15px;
+    padding-left: 15px;
+    .ty-orders-summary__row:not(.ty-orders-summary__row-total) {
+        border-bottom: 1px solid #e3e9ec;
+        &.no-border {
+            border: none;
+            td {
+                padding-bottom: 5px;
+            }
+        }
+    }
+    .ty-orders-summary__row-vendor {
+        &:last-child {
+            border-bottom: 1px solid #e3e9ec;
+            td {
+                padding-bottom: 11px;
+            }
+        }
+        td {
+            padding-top: 3px;
+            padding-bottom: 3px;
+            &:first-child {
+                padding-left: 10px;
+            }
+        }
+
+    }
+}
+.ty-orders-detail__table-description a:hover,
+.ty-orders-search a:hover {
+    color: @color_links_hover;
+}
+.cp_one_order_icon_arrow{
+    float: right;
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+.cp-single-order-btn {
+    display: inline-block;
+    border: 2px solid #bc8cfa;
+    padding: 9px 32px 9px 10px;
+    font-size: 12px;
+    line-height: 14px;
+    color: #000;
+    position: relative;
+    i {
+        font-size: 18px;
+        vertical-align: middle;
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+        top: 8px;
+    }
+    &.open i{
+        -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+        top: 6px;
+    }
+    &:hover {
+        color: #fff;
+        background: #bc8cfa;
+    }
+}
+
+.ty-orders-search-th{
+    &__status {
+        width: 167px;
+    }
+    &__actions {
+        width: 155px;
+    }
+}
+.ty-orders-search__item--actions {
+    .text-button {
+        padding: 0;
+        margin-left: 0 !important;
+        &:hover {
+            padding: 0;
+        }
+        &:not(:last-child) {
+            margin-right: 5px;
+        }
+    }
+}
+.ty-orders-search__item-childs {
+    width: 30%;
+    vertical-align: top;
+    .ty-orders-search__item-number {
+        margin-right: 10px;
+        margin-bottom: 5px;
+    }
+}
+
+@media (min-width: 768px) {
+    .ty-orders-search__item-suborders {
+        ul {
+            margin-left: 50px;
+        }
+    }
+}
+// @media (max-width: 767px) {
+//     .ty-orders-search__item-suborders {
+//         .ty-table__responsive-header {
+//             display: none;
+//         }
+//     }
+// }

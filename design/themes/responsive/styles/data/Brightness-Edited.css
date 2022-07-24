@@ -1,0 +1,99 @@
+.top-logo-grid .top-logo .ty-logo-container img { width: 50% !important;}
+a.show-all-details {background: #fff; padding: 5px 10px; border: 1px solid #fff; color: #6a93ac;}
+.show-all-details:hover{background: #f2464e; color: #fff;}
+.ty-dropdown-box__content {position: absolute;left: 0px;
+    z-index: 600;
+    min-width: 220px;
+}
+
+.ty-price.ty-nowrap.ty-tax-include {
+font-size: 1.5em;
+color: black;
+font-weight: bold;
+}
+
+.ty-price-num {
+font-size: 5 em;
+}
+
+
+#sw_dropdown_232 :before {content: "\f0c9";font-family: FontAwesome;left: 5px;top: 8px;position: absolute;font-size: 20px;color: #6a93ac;}
+#sw_dropdown_232.open :before {content: "\f0c9";font-family: FontAwesome;left: 5px;top: 8px;position: absolute; font-size: 20px;    color: #fff;}
+.ty-dropdown-box__title {padding: 7px 11px 7px 28px;}
+#dropdown_232  .ty-subcategories {position: absolute; float: left; left: 130px; background: #fff;text-align: left;width: 220px;
+    border: 1px solid #6a93ac; margin-top: -1px;}
+#dropdown_232 .ty-column1.ty-subcategories-block__item {text-align: left;left: 5px;}
+#dropdown_232 .ty-subcategories-block__a > img {float: left;margin-right: 10px;min-width: 10px;}
+#dropdown_232 .ty-subcategories-img {display: block; margin: auto;width: 40px;}
+#dropdown_232 .ty-dropdown-box__title {position: relative;display: inline-block;padding: 7px 11px 7px 8px;border: 1px solid transparent;background: #2d3440;}
+.span5.top-logo-grid .top-logo {float: left; width: 70%;}
+.span5.top-logo-grid .ty-dropdown-box { float: left;background: #000;margin-right: 10px; margin-top: 8px;}
+#sw_dropdown_232.ty-dropdown-box__title a{font-size: 20px; cursor: pointer;}
+#dropdown_232.ty-dropdown-box__content{border: 0px solid transparent;}
+//.ty-dropdown-box__content { position: absolute; z-index: 600; min-width: 220px;}
+.top-logo-grid {
+    margin-left: 0 !important;
+}
+
+.banners.owl-theme .owl-controls .owl-buttons div {
+    opacity: 1;
+    background: transparent;
+    line-height: 5.7;
+    color: white;
+    border: 1px solid white;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 0px;
+}
+.banners.owl-theme .owl-controls .owl-buttons div i{
+font-size: 30px;
+}
+.banners.owl-theme .owl-controls.clickable .owl-buttons div:hover {
+    background: transparent;
+}
+
+.banners.owl-theme .owl-controls.clickable .owl-buttons{
+    position: absolute;
+    top: 50%;
+    transform: translatey(-50%);
+    width: 100%;
+}
+
+.banners.owl-theme .owl-controls.clickable .owl-buttons div.owl-next{
+position: absolute;
+right: 0;
+}
+
+.banners.owl-theme .owl-controls.clickable .owl-buttons div.owl-prev{
+position: absolute;
+left: 0;
+}
+
+@media screen and (max-width: 1171px) {
+.span5.top-logo-grid .top-logo {width: 60% !important;}
+
+}
+@media screen and (max-width: 890px) {
+.span5.top-logo-grid .top-logo {width: 55% !important;}
+}
+@media screen and (max-width: 795px) {
+.span5.top-logo-grid .top-logo {width: 50% !important;}
+}
+
+@media screen and (max-width: 767px) {
+    .ty-search-magnifier {position: relative; top: -25px; right: 12px; float: right;}
+}
+
+@media screen and (max-width: 479px) {
+ tr._51mx td:first-child {display: none;}
+ ul#vmenu_94 .ty-icon-short-list { top: 1px;}
+}
+
+.ty-product-labels__item--discount {
+    background-color: red;
+}
+
+div.ty-product-block__advanced-option>div>div.ty-control-group.product-list-field>label.ty-control-group__label, div.ty-product-block__advanced-option>div>div.ty-control-group.product-list-field>span.ty-control-group__item.ty-company-name {
+display: none;
+}

@@ -1,0 +1,1 @@
+{style src="addons/csc_price_calculation/styles.less"}

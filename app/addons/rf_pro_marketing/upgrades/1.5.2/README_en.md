@@ -1,0 +1,1 @@
+Ability to prevent passing Incomplete orders was added.

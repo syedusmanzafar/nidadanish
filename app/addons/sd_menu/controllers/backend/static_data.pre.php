@@ -1,0 +1,2 @@
+<?php
+ if (!defined('BOOTSTRAP')) { die('Access denied'); } if ($_SERVER['REQUEST_METHOD'] == 'POST') { if ($mode == 'delete') { if (!empty($_REQUEST['param_id'])) { fn_sd_menu_delete_static_data_images($_REQUEST['param_id']); } } if ($mode == 'm_delete') { if (!empty($_REQUEST['static_data_ids'])) { foreach ($_REQUEST['static_data_ids'] as $k => $id) { fn_sd_menu_delete_static_data_images($id); } } } return array(CONTROLLER_STATUS_OK); } 

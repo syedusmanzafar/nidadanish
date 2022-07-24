@@ -1,0 +1,1 @@
+Добавлена возможность отправить product_code вместо product_id для Facebook Conversion API и Google Remarketing Tag.

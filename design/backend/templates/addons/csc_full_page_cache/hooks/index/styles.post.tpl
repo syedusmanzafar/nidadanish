@@ -1,0 +1,1 @@
+{style src="addons/csc_full_page_cache/styles.less"}

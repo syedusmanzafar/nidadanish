@@ -1,0 +1,57 @@
+{** facebook_ads **}
+{strip}
+    "id"
+    ,"availability"
+    ,"condition"
+    ,"description"
+    ,"image_link"
+    ,"link"
+    ,"title"
+    ,"price"
+    ,"sale_price"
+    ,"brand"
+    ,"inventory"
+    {if $ab__pfe05_product_type == 'Y'},"product_type"{/if}
+{/strip}
+
+{$params = ['facebook_ads' => true, 'items_per_page' => 1000, 'categories' => $categories, 'get_images' => true, 'get_features' => false]}
+{while $products = fn__pfe_get_offers($datafeed, $params)}
+{if $products}
+{foreach $products as $product}
+{strip}
+    "{$product.product_id}"
+    {if $product.avail_since > $smarty.const.TIME}
+        ,"preorder"
+    {elseif !($product.zero_price_action == "R" && $product.price == 0) && !($settings.General.inventory_tracking == "Y" && $settings.General.allow_negative_amount != "Y" && (($product.amount <= 0 || $product.amount < $product.min_qty) && $product.tracking != "ProductTracking::DO_NOT_TRACK"|enum) && $product.is_edp != "Y")}
+        ,"in stock"
+    {else}
+        ,"out of stock"
+    {/if}
+    ,"{$product.ab__pfe05_condition nofilter}"
+    {if $product.short_description}
+        ,"{$product.short_description|fn_ab__pfe05_escape_csv nofilter}"
+    {else}
+        ,"{$product.full_description|fn_ab__pfe05_escape_csv nofilter}"
+    {/if}
+    {$image_url = ''}
+    {if $product.images}
+        {$image_url = $product.images|reset}
+    {/if}
+    ,"{$image_url nofilter}"
+    ,"{$product.url nofilter}"
+    ,"{$product.product|fn_ab__pfe05_escape_csv nofilter}"
+    {if $product.list_price && $product.list_price|floatval > $product.price|floatval}
+        ,"{$product.list_price} {$datafeed.currency_code}"
+        ,"{$product.price} {$datafeed.currency_code}"
+    {else}
+        ,"{$product.price} {$datafeed.currency_code}"
+        ,""
+    {/if}
+    ,"{$product.brand|fn_ab__pfe05_escape_csv nofilter}"
+    ,"{$product.amount}"
+    {if $ab__pfe05_product_type == 'Y'},"{$product.main_category|fn_ab__pfe05_create_product_type|fn_ab__pfe05_escape_csv nofilter}"{/if}
+{/strip}
+
+{/foreach}
+{/if}
+{/while}

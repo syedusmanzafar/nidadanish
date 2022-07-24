@@ -1,0 +1,2 @@
+<?php
+ defined('BOOTSTRAP') or die('Access denied'); if (fn_sd_labels_check_availability()) { $schema['controllers']['sd_labels'] = [ 'modes' => [ 'update' => [ 'permissions' => ['GET' => true, 'POST' => false], ], 'manage' => [ 'permissions' => ['GET' => true, 'POST' => false], ], ], 'permissions' => false, ]; } return $schema; 

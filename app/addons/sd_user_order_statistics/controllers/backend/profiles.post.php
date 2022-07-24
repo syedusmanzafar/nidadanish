@@ -1,0 +1,2 @@
+<?php
+ if (!defined('BOOTSTRAP')) { die('Access denied'); } use Tygh\Registry; if ($_SERVER['REQUEST_METHOD'] == 'POST') { return; } if ($mode == 'update') { if (!empty($_REQUEST['user_id'])) { $orders_data = sd_ZTJlNDIzNDMyN2NhMDlhMjgzZTIyMTli($_REQUEST['user_id'], '', Registry::get('runtime.company_id')); Tygh::$app['view']->assign('orders_data', $orders_data); } } 

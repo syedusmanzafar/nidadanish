@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>brand_categories</id>
+    <version>1.0</version>
+    <supplier>MegaByte</supplier>
+    <supplier_link>http://megabyte.az</supplier_link>
+    <has_icon>true</has_icon>
+
+    <default_language>en</default_language>
+
+    <priority>120000</priority>
+    <position>250</position>
+
+    <status>active</status>
+
+    <authors>
+        <author>
+            <name>MegaByte</name>
+            <email>hello@megabyte.az</email>
+            <url>http://megabyte.az</url>
+            <phone>+994 77 535 44 45</phone>
+        </author>
+    </authors>
+    <queries>
+        <item for="install" editions="ULTIMATE,MULTIVENDOR">
+            CREATE TABLE `?:brand_categories` (
+                `id` int(11) unsigned NOT NULL auto_increment,
+                `name` varchar(255) NOT NULL,
+                PRIMARY KEY  (`id`)
+            ) Engine=MyISAM DEFAULT CHARSET UTF8;
+        </item>		
+        <item for="install" editions="ULTIMATE,MULTIVENDOR">ALTER TABLE `?:product_feature_variants` ADD pos int(2) NOT NULL DEFAULT "0";</item>
+        <item for="install" editions="ULTIMATE,MULTIVENDOR">ALTER TABLE `?:product_feature_variants` ADD category_id int(11) NOT NULL DEFAULT "0";</item>
+        <item for="uninstall">DROP TABLE `?:brand_categories`;</item>
+        <item for="uninstall">ALTER TABLE `?:product_feature_variants` DROP COLUMN pos</item>
+        <item for="uninstall">ALTER TABLE `?:product_feature_variants` DROP COLUMN category_id</item>
+    </queries>
+</addon>

@@ -1,0 +1,1 @@
+<th width="15%">{__("addons.sd_user_order_statistics.current_orders")}</th>

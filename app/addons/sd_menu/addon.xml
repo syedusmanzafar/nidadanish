@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>sd_menu</id>
+    <version>4.10.2</version>
+    <priority>10000</priority>
+    <position>1</position>
+    <status>active</status>
+    <has_icon>Y</has_icon>
+    <default_language>en</default_language>
+    <supplier>Simtech Development</supplier>
+    <supplier_link>http://www.simtechdev.com</supplier_link>
+    <authors>
+        <author>
+            <name>Simtech Development</name>
+            <email>sales@simtechdev.com</email>
+            <url>http://www.simtechdev.com</url>
+        </author>
+    </authors>
+    <compatibility>
+        <core_version>
+            <min>4.4.1</min>
+        </core_version>
+        <core_edition>
+            ULTIMATE,MULTIVENDOR
+        </core_edition>
+    </compatibility>
+
+    <settings edition_type="ROOT">
+        <sections>
+            <section id="general">
+                <items>
+                    
+                    <!--TODO: Hidden until optimization-->
+                    <item id="hide_empty_categories">
+                        <type>hidden</type>
+                        <default_value>N</default_value>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+
+    <queries>
+        <item>ALTER TABLE ?:category_descriptions ADD label_text varchar(255) NOT NULL</item>
+        <item>ALTER TABLE ?:category_descriptions ADD label_color varchar(28) NOT NULL</item>
+        <item>ALTER TABLE ?:category_descriptions ADD banner_url varchar(255) NOT NULL</item>
+        <item>ALTER TABLE ?:static_data_descriptions ADD label_text varchar(255) NOT NULL</item>
+        <item>ALTER TABLE ?:static_data_descriptions ADD label_color varchar(28) NOT NULL</item>
+        <item>ALTER TABLE ?:static_data_descriptions ADD banner_url varchar(255) NOT NULL</item>
+
+        <item for="uninstall">ALTER TABLE ?:category_descriptions DROP label_text</item>
+        <item for="uninstall">ALTER TABLE ?:category_descriptions DROP label_color</item>
+        <item for="uninstall">ALTER TABLE ?:category_descriptions DROP banner_url</item>
+        <item for="uninstall">ALTER TABLE ?:static_data_descriptions DROP label_text</item>
+        <item for="uninstall">ALTER TABLE ?:static_data_descriptions DROP label_color</item>
+        <item for="uninstall">ALTER TABLE ?:static_data_descriptions DROP banner_url</item>
+    </queries>
+<marketplace_product_id>2021</marketplace_product_id></addon>

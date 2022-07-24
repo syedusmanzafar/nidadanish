@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>cp_webp</id>
+    <version>1.16</version>
+    <priority>5000</priority>
+    <position>100</position>
+    <status>disabled</status>
+    <has_icon>Y</has_icon>
+    <default_language>en</default_language>
+    <authors>
+        <author>
+            <name>Cart-Power</name>
+            <email>sales@cart-power.com</email>
+            <url>http://cart-power.com</url>
+        </author>
+    </authors>
+    <compatibility>
+        <dependencies>cp_addons_manager</dependencies>
+    </compatibility>
+    <supplier>Cart-Power</supplier>
+    <supplier_link>https://cart-power.com</supplier_link>
+    <settings edition_type="ROOT,ULT:VENDOR">
+        <sections>
+            <section id="general">
+                <items>
+                    <item id="general">
+                        <type>header</type>
+                    </item>
+                   <item id="licensekey" edition_type="ROOT">
+                        <type>input</type>
+                        <default_value></default_value>
+                    </item>
+                   <item id="quality">
+                        <type>selectbox</type>
+                        <variants>
+                            <item id="50"></item>
+                            <item id="80"></item>
+                            <item id="100"></item>
+                        </variants>
+                        <default_value>80</default_value>
+                    </item>
+                    <item id="force_generate">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="use_hash" >
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="use_logs" >
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="delete_webp" edition_type="ROOT">
+                        <type>info</type>
+                        <handler>fn_cp_web_delete_webp_images_btn</handler>
+                    </item>
+                    <item id="cron_header" edition_type="ROOT">
+                        <type>header</type>
+                    </item>
+                    <item id="use_cron" edition_type="ROOT">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="cron_pass" edition_type="ROOT">
+                        <type>input</type>
+                        <default_value>cron_go_web</default_value>
+                    </item>
+                    <item id="cron_limit" edition_type="ROOT">
+                        <type>input</type>
+                        <default_value>50</default_value>
+                    </item>
+                    <item id="clear_logs" edition_type="ROOT">
+                        <type>input</type>
+                        <default_value>20</default_value>
+                    </item>
+                    <item id="use_pixel" edition_type="ROOT">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="pixel_key_cjeck" edition_type="ROOT">
+                        <type>info</type>
+                        <handler>fn_cp_web_check_pixel_key_info</handler>
+                    </item>
+                    <item id="pixel_key" edition_type="ROOT">
+                        <type>input</type>
+                        <default_value></default_value>
+                    </item>
+                    <item id="cron_info_txt" edition_type="ROOT">
+                        <type>info</type>
+                        <handler>fn_cp_web_cron_run_info</handler>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+    <queries>
+        <item>DROP TABLE IF EXISTS ?:cp_web_images_for_change;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_web_logs;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_web_log_images;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_web_ignore_list;</item>
+        <item>DROP TABLE IF EXISTS ?:cp_web_image_list;</item>
+        
+        <item for="install" version="1.8">
+            CREATE TABLE `?:cp_web_images_for_change` (
+                `image_id` int(11) unsigned NOT NULL auto_increment,
+                `image_path` varchar(255) NOT NULL default '',
+                `webp_path` varchar(255) NOT NULL default '',
+                UNIQUE KEY `image_path` (`image_path`),
+                KEY `image_id` (`image_id`)
+            ) Engine=InnoDB DEFAULT CHARSET UTF8;
+        </item>
+        <item for="install" version="1.8">
+            CREATE TABLE `?:cp_web_logs` (
+                `log_id` mediumint(8) unsigned NOT NULL auto_increment,
+                `start_time` int(11) unsigned NOT NULL default '0',
+                `end_time` int(11) unsigned NOT NULL default '0',
+                `info` text NOT NULL,
+                `type` char(1) NOT NULL default 'N',
+                PRIMARY KEY  (`log_id`)
+            ) Engine=InnoDB DEFAULT CHARSET UTF8;
+        </item>
+        <item for="install" version="1.14">
+            CREATE TABLE `?:cp_web_log_images` (
+                `timestamp` int(11) unsigned NOT NULL default '0',
+                `webp_crc` int(11) unsigned NOT NULL default '0',
+                `log_id` int(11) unsigned NOT NULL default '0',
+                `webp_path` varchar(255) NOT NULL default '',
+                `image_crc` int(11) unsigned NOT NULL default '0',
+                `image_path` varchar(255) NOT NULL default '',
+                `image_size` decimal(12,3) NOT NULL default '0.000',
+                `webp_size` decimal(12,3) NOT NULL default '0.000',
+                UNIQUE KEY `image_crc` (`image_crc`),
+                KEY `webp_crc` (`webp_crc`),
+                KEY `log_id` (`log_id`)
+            ) Engine=InnoDB DEFAULT CHARSET UTF8;
+        </item>
+        <item for="install" version="1.8">
+            CREATE TABLE `?:cp_web_ignore_list` (
+                `image_id` mediumint(8) unsigned NOT NULL auto_increment,
+                `image_path` varchar(255) NOT NULL default '',
+                PRIMARY KEY  (`image_id`)
+            ) Engine=InnoDB DEFAULT CHARSET UTF8;
+        </item>
+        <item for="install" version="1.8">
+            CREATE TABLE `?:cp_web_image_list` (
+                `webp_crc` int(11) unsigned NOT NULL default '0',
+                `webp_path` varchar(255) NOT NULL default '',
+                `image_path` varchar(255) NOT NULL default '',
+                UNIQUE KEY `webp_crc` (`webp_crc`)
+            ) Engine=InnoDB DEFAULT CHARSET UTF8;
+        </item>
+        
+        <item for="install" version="1.11">ALTER TABLE ?:cp_web_image_list ADD image_crc int(11) unsigned NOT NULL default '0';</item>
+        <item for="install" version="1.11">TRUNCATE TABLE ?:cp_web_image_list</item>
+        <item for="install" version="1.11">ALTER TABLE ?:cp_web_image_list DROP INDEX webp_crc, ADD UNIQUE webp_crc (image_crc) USING BTREE;</item>
+        
+        <item for="install" version="1.15">CREATE FULLTEXT INDEX image_path ON ?:cp_web_image_list(image_path);</item>
+        
+        <item for="install" version="1.16">ALTER TABLE ?:cp_web_image_list ADD rel_image_crc int(11) unsigned NOT NULL default '0';</item>
+        <item for="install" version="1.16">CREATE INDEX rel_image_crc ON ?:cp_web_image_list(rel_image_crc);</item>
+        
+        <item editions="MULTIVENDOR,ULTIMATE" version="1.8">REPLACE INTO ?:privileges (privilege, is_default, section_id) VALUES ('view_cp_webp', 'Y', 'addons');</item>
+        <item editions="MULTIVENDOR,ULTIMATE" version="1.8">REPLACE INTO ?:privileges (privilege, is_default, section_id) VALUES ('manage_cp_webp', 'Y', 'addons');</item>
+        
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_web_images_for_change;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_web_logs;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_web_log_images;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_web_ignore_list;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:cp_web_image_list;</item>
+        
+        <item for="uninstall" editions="MULTIVENDOR,ULTIMATE">DELETE FROM ?:privileges WHERE privilege = 'view_cp_webp'</item>
+        <item for="uninstall" editions="MULTIVENDOR,ULTIMATE">DELETE FROM ?:privileges WHERE privilege = 'manage_cp_webp'</item>
+        
+    </queries>
+    <functions>
+        <item for="install">fn_cp_webp_install</item>
+    </functions>
+</addon>

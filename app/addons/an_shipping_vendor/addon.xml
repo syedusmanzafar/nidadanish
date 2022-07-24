@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>an_shipping_vendor</id>
+    <version>1.0</version>
+    <priority>2800</priority>
+    <position>100</position>
+    <status>active</status>
+    <dependencies/>
+    <default_language>en</default_language>
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+
+
+
+
+    <queries>
+        <item for="install">ALTER TABLE ?:shippings ADD `an_is_main` char(1) DEFAULT 'N'</item>
+        <item for="uninstall">ALTER TABLE ?:shippings DROP `an_is_main`  char(1) DEFAULT 'N' </item>
+    </queries>
+
+</addon>

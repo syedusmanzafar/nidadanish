@@ -1,0 +1,1 @@
+<input type="hidden" id="simple_search_id" name="search_id" value="{$search_id}">

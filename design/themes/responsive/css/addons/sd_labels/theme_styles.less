@@ -1,0 +1,45 @@
+/* Wrappers */
+
+// Products list template: Grid
+.ty-grid-list__item {
+    position: relative;
+
+    .sd-labels {
+        &--location-overlay {
+            padding: @indent-unit + 10px; // 10px - padding for grid-list in responsive theme
+        }
+    }
+}
+
+// Products list template: Products
+.ty-product-list__image {
+    .sd-labels {
+        &--location-overlay {
+            padding: @indent-unit;
+        }
+    }
+}
+
+// Styles for Detail page
+.ty-product-img {
+    box-sizing: border-box;
+}
+
+.ty-product-block__img,
+.ty-product-bigpicture__img {
+    position: relative;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 0;
+}
+
+.ty-product-bigpicture-thumbnails_gallery {
+    font-size: 0;
+}
+
+.ty-product-block,
+.ty-product-bigpicture {
+    .ty-product-thumbnails {
+        display: inline-block;
+    }
+}

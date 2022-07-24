@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>rf_lazy_images</id>
+    <version>1.0.3</version>
+    <priority>5000</priority>
+    <status>active</status>
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+    <default_language>en</default_language>
+    <supplier>RetailFactory</supplier>
+    <supplier_link>https://retailfactory.ru</supplier_link>
+    <has_icon>Y</has_icon>
+    <status>active</status>
+    <settings edition_type="ROOT">
+        <sections>
+            <section id="general">
+                <items>
+                    <item id="license_number">
+                        <type>input</type>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+<marketplace_product_id>3344</marketplace_product_id><marketplace_license_number>MP-48G1-6R9H-Z45B-8QOQ</marketplace_license_number></addon>

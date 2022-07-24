@@ -1,0 +1,57 @@
+@color-info:    #0052cc;
+@color-warning: #ff991f;
+@color-success: #00875a;
+@color-error:   #de350b;
+
+.sd-help-panel {
+    display: flex;
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 3px;
+    font-family: -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    line-height: 1.44;
+    letter-spacing: normal;
+
+    &--type-info {
+        background: lighten(@color-info, 54%);
+    }
+
+    &--type-warning {
+        background: lighten(@color-warning, 40%);
+    }
+
+    &--type-success {
+        background: lighten(@color-success, 68%);
+    }
+
+    &--type-error {
+        background: lighten(@color-error, 50%);
+    }
+
+    &__icon {
+        flex-shrink: 0;
+        margin-right: 0.5rem;
+
+        &--name-info {
+            color: @color-info;
+        }
+
+        &--name-warning {
+            color: @color-warning;
+        }
+
+        &--name-success {
+            color: @color-success;
+        }
+
+        &--name-error {
+            color: @color-error;
+        }
+    }
+
+    &__content {
+        flex-grow: 1;
+    }
+}

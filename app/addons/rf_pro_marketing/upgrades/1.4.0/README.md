@@ -1,0 +1,1 @@
+Support of CS-cart 4.12.1 was added.

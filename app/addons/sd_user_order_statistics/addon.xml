@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>sd_user_order_statistics</id>
+    <version>4.9.0.2</version>
+<commit>39c634c68b52</commit>
+    <priority>4294967293</priority>
+    <position>1</position>
+    <status>active</status>
+    <has_icon>Y</has_icon>
+    <default_language>en</default_language>
+    <supplier>Simtech Development</supplier>
+    <supplier_link>http://www.simtechdev.com</supplier_link>
+    <compatibility>
+        <core_version>
+            <min>4.5.0</min>
+        </core_version>
+        <core_edition>
+            ULTIMATE,MULTIVENDOR
+        </core_edition>
+    </compatibility>
+    <settings edition_type="ROOT">
+        <sections>
+            <section id="general">
+                <items>
+                    <item id="lkey">
+                        <type>input</type>
+                    </item>
+                    <item id="successful_payment_order_statuses">
+                        <type>multiple select</type>
+                        <default_value>#M#P=Y#C=Y</default_value>
+                    </item>
+                    <item id="current_order_statuses">
+                        <type>multiple select</type>
+                        <default_value>#M#P=Y#C=Y</default_value>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+    <queries>
+        <item for="install">ALTER TABLE ?:orders ADD refer_url VARCHAR(255) DEFAULT ''</item>
+        <item for="uninstall">ALTER TABLE ?:orders DROP refer_url</item>
+    </queries>
+<marketplace_product_id>1714</marketplace_product_id><marketplace_license_number>ORDERSTAT-JN4V-856T-27L5-2889</marketplace_license_number></addon>

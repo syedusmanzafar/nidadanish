@@ -1,0 +1,851 @@
+@cp-am-green: #89be01;
+@cp-am-blue: #10458F;
+@cp-am-red: #F71F1F;
+@cp-am-yellow: #F4BF01;
+@cp-am-purple: #8C11C6;
+@cp-am-default: #C7C7C7;
+@cp-am-background: #fff;
+@cp-am-black: #323232;
+
+.cp-addons-manage {
+    background-color: @cp-am-background;
+    
+    a:focus {
+        outline: none;    
+    }
+    
+    .table {
+        tr {
+            vertical-align: top;
+            &:not(:last-child) {
+                border-bottom: 1px solid @cp-am-default;
+            }
+            
+            td {
+                border-top: none;
+            }
+        }
+    }
+
+    .table td {
+        vertical-align: top;
+        padding: 20px 10px;
+    }
+
+    .cp-addon-tools .cp-am-tool {
+        display: block;
+        margin-top: 10px;
+        
+        &:hover, &:focus {
+            text-decoration: none;
+        }
+    }
+    
+    .cp-addon-info-wrap {
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15);
+        border-radius: 5px;
+        padding: 10px 20px;
+        
+        .cp-addons-list-description {
+            margin: 20px 0px;
+        }
+    }
+    
+    .cp-addons-list-title {
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .cp-addon-set-name-wrap {
+        display: block;
+        margin-bottom: 20px;
+        
+        .cp-addon-set-name {
+            display: inline-block;
+            color: @cp-am-blue;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .cp-caret-icon {
+            display: inline-block;
+            margin-right: 6px;
+            color: @cp-am-blue;
+            font-size: 18px;
+            opacity: 1;
+        }
+    }
+    
+    .cp-addon-set-wrap {
+        margin-left: 6px;
+        padding-left: 20px;
+        border-left: 2px solid @cp-am-blue;
+    }
+    
+    .cp-versions-info-wrap {
+        margin-top: 15px;
+    
+        .cp-versions-title {
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+    
+        .cp-version {
+            display: inline-block;
+            border-left: 5px solid @cp-am-default;
+            padding: 0px 25px 0px 15px;
+            margin-top: 5px;
+            
+            .cp-am-icon {
+                padding: 0px 5px;
+            }
+        }
+        .cp-installed-version {
+            border-color: @cp-am-yellow;
+        }
+        .cp-available-version {
+            border-color: @cp-am-green;
+        }
+        .cp-actual-version {
+            border-color: @cp-am-purple;
+        }
+    }
+    
+    .cp-addon-action-wrap {
+        margin-bottom: 20px;
+    }
+
+    .cp-addon-extra-info {
+        margin-bottom: 10px;
+    }
+    
+    .cp-extra-info-item {
+        margin-bottom: 5px;
+    }
+    
+    .cp-addon-action-title {
+        display: inline-block;
+        margin-bottom: 5px;
+        color: @cp-am-blue; 
+    }
+    
+    .cp-version-link {
+        display: inline-block;
+        margin-bottom: 5px;
+        margin-right: 10px;
+        line-height: 28px;
+    }
+    
+    .cp-addon-error-wrap {
+        margin-bottom: 20px;
+        color: @cp-am-red;
+    
+        ul {
+            margin: 0 0 0 20px;
+        }
+        
+        li {
+            font-weight: bold;
+            display: block;
+        }
+    
+        .cp-addon-error {
+            margin-bottom: 5px;
+        }
+    }
+    
+    .cp-addon-subscr-title {
+        margin-bottom: 5px;
+        
+        .cp-addon-subscr-exists {
+            color: @cp-am-green;
+        }
+        .cp-addon-subscr-expired {
+            color: @cp-am-red;
+        }
+    }
+    
+    .cp-addon-subscr-text {
+        margin-bottom: 5px;
+    }
+
+    .cp-uc-link-wrap {
+        display: inline-block;
+    
+        a {
+            color: @cp-am-blue;
+            text-decoration: underline;
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        .table-responsive-wrapper .table-responsive {
+            td:before {
+                display: none;
+            }
+            
+            .cp-am-version {
+                padding: 5px 15px !important;
+            }
+            
+            .cp-addon-tools .cp-am-tool {
+                display: inline-block;
+            }         
+        }
+        
+        .cp-addon-tools {
+            text-align: center;
+            
+            .cp-am-tool {
+                display: inline-block;
+            }
+            
+            .cp-am-tool:first-child {
+                float: left;
+            }
+            
+            .cp-am-tool:last-child {
+                float: right;
+            }
+        }
+        
+        .cp-versions-info-wrap .cp-version {
+            display: block;
+        }
+        
+        .cp-addon-action-wrap {
+            .cp-addon-action-title {
+                display: block;   
+            }
+            
+            .cp-version-link {
+                float: left;
+                display: inline-block;
+            }
+            
+            .cp-addon-action-buttons {
+                display: block;
+                margin-left: 80px;
+                
+                a {
+                    display: block;
+                }
+            }
+        }
+        
+        .cp-addon-subscr-wrap {
+            position: static;
+        }
+        
+        .cp-addon-subscr-buttons a {
+            display: block;
+        }
+    }
+}
+
+.cp-all-addons {
+    //font-family: 'Arial', sans-serif;
+    position: relative;
+    vertical-align: top;
+
+    .cp-addons-left-block {
+        display: inline-block;
+        margin-right: 450px;
+    }
+    
+    .cp-list-addon-item {
+        position: relative;
+        margin: 0px;
+        display: block;
+        
+        & > a {
+            outline: none;
+            text-decoration: none;
+        }
+    }
+    
+    .cp-list-addon-title-wrap {
+        margin: 10px 0 10px 90px;
+    }
+    
+    .cp-list-addon-title {
+        display: inline-block;
+        font-size: 18px;
+        font-weight: 600;
+    }
+                
+    .cp-list-addon-info-wrap {
+        position: relative;
+        padding: 10px;
+        background: @cp-am-background;
+        color: @cp-am-black;
+        box-sizing: border-box;
+        
+        //border: 1px solid #DCDCDC;
+        box-shadow: 0px 0px 8px rgba(0,0,0,0.15);
+        border-radius: 5px;
+        margin-bottom: 20px;
+        
+        .cp-list-addon-icon {
+            display: inline-block;
+            width: 75px;
+            
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            
+            background: @cp-am-blue;
+            border-radius: 5px;
+        }
+        
+        .cp-list-addon-info {
+            display: block;
+            margin-left: 90px;
+        }
+        
+        .cp-list-addon-description {
+            margin-bottom: 20px;
+        }
+        
+        &.cp-selected {
+            background: @cp-am-blue;
+            color: @cp-am-background;
+            box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15);
+            
+            .cp-list-addon-icon img {
+                filter: invert(0%);
+            }
+            
+        	.cp-price {
+            	color: @cp-am-background;
+            }
+            
+            .cp-old-price {
+            	color: #488CEA;
+            }
+            
+            &:after {
+                content: '';
+                position: absolute;
+                right: -30px;
+                top: 5px;
+                border: 15px solid transparent;
+                border-left: 23px solid @cp-am-blue;
+            }
+        }
+        
+        &:hover {
+            text-decoration: none;
+            box-shadow: 0px 0px 16px rgba(0,0,0,0.25);
+        }
+    }
+    
+    .cp-addons-main-info {
+        display: inline-block;
+        width: 450px;
+        padding: 10px;
+        padding-left: 30px;
+        color: @cp-am-black;
+        
+        position: absolute;
+        left: 100%;;
+        top: 0;
+        
+        .cp-addon-title {
+            font-weight: 600;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .cp-addon-description {
+        	margin-bottom: 10px;
+        }
+        
+        .cp-addon-video iframe {
+            width: 430px;
+            height: 250px;
+        }
+        
+        .cp-addon-images {
+            text-align: left;
+            margin: 0px;
+            margin-left: 2px;
+            
+            a {
+                display: inline-block;
+                
+                margin: 2px;
+                width: calc(~"33.33% - 8px");
+                height: 85px;
+                border: 1px solid #C6C6C6;
+                box-sizing: border-box;
+                border-radius: 5px;
+                overflow: hidden;
+            }
+        }
+    }
+    
+    .cp-addons-top-wrap {
+        margin-bottom: 10px;
+        
+        .cp-store-link {
+            display: inline-block;
+            float: right;
+            padding: 10px 20px;
+            background: @cp-am-background;
+            border-radius: 3px;
+            border: 2px solid @cp-am-red;
+            
+            font-size: 14px;
+            font-weight: 600;
+            color: @cp-am-red;
+            text-decoration: none;
+            text-align: center;
+            
+            &:hover {
+                box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+                border-radius: 3px;
+                border-color: white;
+            }
+        }
+        
+        .cp-list-changer-wrap {
+            display: inline-block;
+            margin-top: 15px;
+            
+            a {
+                line-height: 14px;
+                vertical-align: top;
+    
+                color: @cp-am-black;
+                font-size: 14px;
+                font-weight: 600;
+                text-decoration: none;
+                
+                span {
+                    display: inline;
+                    vertical-align: top;
+                    line-height: 18px;
+                }   
+            } 
+
+            i {
+                color: @cp-am-blue;
+                font-size: 18px;
+                margin-right: 5px;
+            }
+        }
+    }
+    
+    .cp-addon-release-info {
+        div, strong {
+            display: inline-block;
+        }
+        span {
+            display: block;
+        }
+    }
+    
+    .cp-addon-avail-wrap {
+        margin-bottom: 20px;
+    
+        .cp-addon-avail-info {
+            font-weight: bold;
+            font-size: 14px;
+            
+            span {
+                display: inline;
+                line-height: 18px;
+                vertical-align: top;
+            }
+            
+            i {
+                font-size: 18px;
+                margin-right: 5px;
+            }
+        }    
+    }
+    
+    .cp-list-addon-bottom {
+        position: relative;
+        display: block;
+        min-height: 50px;
+    }
+    
+    .cp-addon-buttons {
+        margin-right: 300px;
+        
+        a {
+            max-width: 240px;
+        }
+    }
+    
+    .cp-addon-price-wrap {
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 40px;
+        color: @cp-am-black;
+        
+        .cp-old-price {
+        	font-weight: 500;
+        	font-size: 24px;
+        	margin-right: 10px;
+        	text-decoration-line: line-through;
+        	color: @cp-am-default;
+        }
+        
+        .cp-free {
+        	font-size: 24px;
+        }
+    }
+    
+    .cp-am-buy-btn {
+        display: block;
+        //max-width: 240px;
+        background: @cp-am-background;
+        border: 2px solid @cp-am-blue;
+        box-sizing: border-box;
+        border-radius: 3px;
+        padding: 12px;
+        color: @cp-am-blue;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 14px;
+        text-decoration: none;
+        
+        &:hover {
+            //box-shadow: 0px 0px 16px rgba(255, 255, 255, 0.25);
+            box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.25);
+        }
+    }
+    
+    .cp-addon-extra-buttons {
+        text-align: center;
+        margin: 10px 0;
+    
+        a {
+            margin-top: 10px;
+        }
+        .cp-documentation-btn,
+        .cp-contact-btn {
+            display: inline-block;
+            width: ~"calc(50% - 4px)";
+        }
+        .cp-contact-btn {
+            margin-left: 4px;
+        }
+        
+        .cp-contact-btn.cp-full {
+            display: block;
+            width: auto;
+        }
+        
+        .cp-demo-btn {
+            display: block;
+        }
+    }
+    
+    .cp-am-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        
+        &:hover {
+            border-color: @cp-am-background;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+        }
+    }
+    
+    .cp-documentation-btn {
+        background: @cp-am-background;
+        border: 2px solid @cp-am-blue;
+        color: @cp-am-blue;
+        
+        &:visited, &:hover, &:focus {
+            color: @cp-am-blue;
+        }
+    }
+    
+    .cp-contact-btn {
+        background: @cp-am-background;
+        border: 2px solid @cp-am-red;
+        color: @cp-am-red;
+        
+        &:visited, &:hover, &:focus {
+            color: @cp-am-red;
+        }
+    }
+
+    .cp-demo-btn {
+        display: inline-block;
+        color: @cp-am-blue;
+        border: 2px solid @cp-am-blue;
+        text-decoration: none;
+        
+        span {
+            text-transform: uppercase;
+            vertical-align: top;
+            line-height: 24px;
+        }
+        
+        i {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        &:visited, &:hover, &:focus {
+            color: @cp-am-blue;
+        }
+    }
+    
+    .cp-addon-sections-wrap {
+        margin-bottom: 20px;
+        text-align: center;
+        
+        .cp-addon-section-item {
+            display: inline-block;
+            background: @cp-am-blue;
+            position: relative;
+            padding: 20px;
+            width: ~"calc(25% - 10px)";
+            height: 110px;
+            box-sizing: border-box;
+            box-shadow: 0px 0px 8px rgba(0,0,0,0.15);
+            border-radius: 5px;
+            vertical-align: top;
+            font-weight: bold;
+            margin: 0 5px 5px 0;
+            text-align: left;
+            
+            .cp-addon-section-icon {
+                position: absolute;
+                left: 10px;
+                top: 10px;
+                width: 80px;
+                height: 80px;
+            }
+            
+            .cp-addon-section-title {
+                margin-left: 85px;
+                color: @cp-am-background;
+            }
+            
+            &.cp-selected {
+                background: darken(@cp-am-blue, 10%);
+                
+                .cp-clear-section {
+                    display: inline-block;
+                    position: absolute;
+                    right: 5px;
+                    top: 5px;
+                    color: #c8c8c8;
+                    font-size: 20px;
+                    text-decoration: none;
+                }
+            }
+        }
+        
+        a.cp-wrap-link:hover {
+            text-decoration: none;
+            
+            .cp-addon-section-item {
+                box-shadow: 0px 0px 16px rgba(0,0,0,0.25);
+            }
+        }
+    }
+    
+    @media screen and (max-width: 979px) {
+        .cp-addons-main-info {
+            width: 350px;
+            
+            .cp-addon-video iframe {
+                width: 330px;
+                height: 185px;
+            }
+        }
+        
+        .cp-addons-left-block {
+            margin-right: 350px;
+        }
+        
+        .cp-addon-price-wrap {
+            font-size: 24px;
+            
+            .cp-old-price {
+                font-size: 20px;
+            }
+        }
+        
+        .cp-addon-buttons {
+            margin-right: 250px;
+        }
+        
+        .cp-list-addon-title-wrap {
+            margin-top: 0px;
+        }
+        
+        .cp-list-addon-title {
+            display: table-cell;
+            vertical-align: middle;
+            height: 70px;
+        }
+        
+        .cp-list-addon-info-wrap .cp-list-addon-info {
+            margin-left: 10px;
+        }
+        
+        .cp-addon-sections-wrap .cp-addon-section-item {
+            width: ~"calc(50% - 12px)";
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        .cp-addons-top-wrap .cp-store-link {
+            display: block;
+            float: none;
+        }
+        
+        .cp-addons-left-block {
+            display: block;
+            margin: 0px;
+        }
+           
+        .cp-addons-main-info {
+            display: block;
+            margin: 0 0 10px 0;
+            width: 100%;
+            position: static;
+            
+            .cp-addon-video iframe {
+                width: 100%;
+                height: 250px;
+            }
+        }
+        
+        .cp-addons-main-info {
+            padding: 10px 0;
+        }
+        
+        .cp-addons-main-info .cp-addon-images a {
+            width: calc(~"25% - 10px");
+            height: 80px;
+        }
+        
+        .cp-list-addon-info-wrap.cp-selected:after {
+            display: none;
+        }
+        
+        .cp-addon-sections-wrap .cp-addon-section-item {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 480px) {
+        .cp-addon-price-wrap {
+            position: static;
+        }
+        .cp-addon-buttons {
+            margin-right: 0px;
+            
+            a {
+                max-width: none;
+            }
+        }
+        .cp-addons-main-info .cp-addon-images a {
+            width: calc(~"33.33% - 8px");
+            height: 70px;
+        }
+        .cp-addon-extra-buttons a {
+            font-size: 13px;
+        }
+    }
+}
+
+
+.tooltip.cp-am-tooltip-content {
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    background: @cp-am-background;
+    color: #333;
+    font-size: 13px;
+    cursor: default;
+}
+
+.cp-am-version {
+    background: @cp-am-blue;
+    border-radius: 15px;
+    color: @cp-am-background;
+    padding: 5px 15px;
+}
+
+.cp-am-icon {
+    font-size: 18px;
+}
+
+.cp-am-btn {
+    display: inline-block;
+    border: 2px solid @cp-am-default;
+    color: inherit;
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding: 4px 12px;
+    margin: 0;
+    font-size: 13px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: @cp-am-background;
+    
+    &:focus, &:visited {
+        color: @cp-am-default;
+        text-decoration: none;
+    }
+    
+    &:hover {
+        color: @cp-am-default;
+        text-decoration: none;
+        border-color: @cp-am-background;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    }
+}
+
+.cp-am-icon-disabled:before {
+    color: #C7C7C7;
+}
+
+.cp-am-blue {
+    border-color: @cp-am-blue;
+    color: @cp-am-blue;
+    
+    &:hover, &:focus, &:visited {
+        color: @cp-am-blue;
+    }
+}
+
+.cp-am-red {
+    border-color: @cp-am-red;
+    color: @cp-am-red;
+    
+    &:hover, &:focus, &:visited {
+        color: @cp-am-red;
+    }
+}
+
+.cp-am-green {
+    border-color: @cp-am-green;
+    color: @cp-am-green;
+    
+    &:hover, &:focus, &:visited {
+        color: @cp-am-green;
+    }
+}

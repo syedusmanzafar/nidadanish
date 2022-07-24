@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>ec_payna_payment</id>
+    <version>1.0.0</version>
+    <name>Ecarter: Payna Payment Method</name>
+    <description>Management of Payna Payment Method</description>
+    <priority>1010111</priority>
+    <position>0</position>
+    <status>active</status>
+    <has_icon>Y</has_icon>
+    <default_language>en</default_language>
+    <supplier>Ecarter Technologies Pvt. Ltd.</supplier>
+    <supplier_link>https://www.ecarter.co</supplier_link>
+    <authors>
+        <author>
+            <name>Ecarter Technologies Pvt. Ltd.</name>
+            <email>support@ecarter.co</email>
+            <url>https://www.ecarter.co</url>
+        </author>
+    </authors>
+    <functions>
+        <item for="install">fn_ec_payna_payment_install</item>
+        <item for="uninstall">fn_ec_payna_payment_uninstall</item>
+    </functions>
+    <!-- <settings>
+        <sections>
+            <section id="general">
+                <items>
+                    <item id="mobile">
+                        <name>Payna Mobile Number</name>
+                        <type>input</type>
+                    </item>
+                    <item id="pin">
+                        <name>Payna Pin Number</name>
+                        <type>input</type>
+                    </item>
+                    <item id="password">
+                        <name>Payna Password</name>
+                        <type>input</type>
+                    </item>
+                    <item id="order_status">
+                        <name>Successful Order Status</name>
+                        <type>selectbox</type>
+                    </item>
+                    <item id="test_mode">
+                        <name>Enable Test Mode</name>
+                        <type>checkbox</type>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings> -->
+    <!-- <queries>
+        <item>CREATE TABLE IF NOT EXISTS `?:ec_payna_log` (
+            `id` int(11) unsigned AUTO_INCREMENT,
+            `order_id` int(11) NOT NULL,
+            `phone` VARCHAR(20) NOT NULL,
+            `fee` decimal(10,2) NOT NULL,
+            `total` decimal(10,2) NOT NULL,
+            `timestamp` INT(11) NOT NULL,
+            PRIMARY KEY (`id`) 
+        )ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;</item>
+        <item for="unistall">DROP TABLE ?:ec_payna_log IF EXISTS;</item>
+        <item editions="MULTIVENDOR,ULTIMATE">REPLACE INTO ?:privileges (privilege, is_default, section_id, group_id, is_view) VALUES ('view_payna_logs', 'Y', 'marketing', 'payna_logs', 'Y');</item>
+         <item for="uninstall" editions="MULTIVENDOR,ULTIMATE">DELETE FROM ?:privileges WHERE privilege = 'view_payna_logs'</item>
+    </queries> -->
+</addon>

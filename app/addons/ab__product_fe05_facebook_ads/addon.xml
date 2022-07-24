@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+<id>ab__product_fe05_facebook_ads</id>
+<version>1.6.0</version>
+<priority>2016</priority>
+<position>0</position>
+<status>active</status>
+<default_language>en</default_language>
+<authors>
+<author>
+<name>AlexBranding</name>
+<email>info@alexbranding.com</email>
+<url>https://alexbranding.com</url>
+</author>
+</authors>
+<supplier>AlexBranding</supplier>
+<supplier_link>https://cs-cart.alexbranding.com</supplier_link>
+<supplier_page>ab__am.addons</supplier_page>
+<compatibility>
+<conflicts></conflicts>
+<dependencies>ab__addons_manager,ab__product_feed_export</dependencies>
+<core_version><min>4.11.1</min></core_version>
+<core_edition>ULTIMATE,MULTIVENDOR</core_edition>
+</compatibility>
+<ab>
+<hash>d4f2a96c8838ea8026583d6919442e84e9ab2c25, 2021-01-16 11:20:55</hash>
+<compatibility>
+<dependencies>
+<ab__addons_manager><min>2.3.5</min></ab__addons_manager>
+<ab__product_feed_export><min>3.8.0</min></ab__product_feed_export>
+</dependencies>
+</compatibility>
+</ab>
+<settings layout="separate" edition_type="ROOT,VENDOR,STOREFRONT">
+<sections>
+<section id="settings">
+<items>
+<item id="fb_pixel_id">
+<type>text</type>
+</item>
+<item id="code"><type>hidden</type><default_value>ABA-tF9glsiqzfks7tgWmJfFR</default_value></item>
+<item id="build"><type>hidden</type><default_value>789</default_value></item>
+</items>
+</section>
+</sections>
+</settings>
+<queries>
+<item for="install">
+CREATE TABLE IF NOT EXISTS `?:ab__pfe05_product_conditions` (
+`product_id` mediumint(8) unsigned NOT NULL,
+`value`	varchar(32) NOT NULL default '',
+PRIMARY KEY (`product_id`)
+) DEFAULT CHARSET UTF8;
+</item>
+<item for="install">REPLACE INTO ?:privileges (privilege, is_default, section_id, group_id, is_view) VALUES ('ab__pfe05.help', 'Y', 'ab__addons', 'ab__product_fe05_facebook_ads', 'N')</item>
+<item for="uninstall">DELETE FROM ?:privileges WHERE section_id = 'ab__product_fe05_facebook_ads' OR group_id = 'ab__product_fe05_facebook_ads'</item>
+</queries>
+</addon>

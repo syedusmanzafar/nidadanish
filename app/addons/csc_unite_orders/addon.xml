@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>csc_unite_orders</id>
+    <version>1.3</version>
+    <priority>3100</priority>
+    <position>80</position>
+    <status>active</status>
+	<supplier>cs-commerce.com</supplier>
+	<supplier_link>https://www.cs-commerce.com</supplier_link>	
+	<authors>
+        <author>
+            <name>CS-Commerce Software Solutions</name>
+            <email>info@cs-commerce.com</email>
+            <url>https://www.cs-commerce.com</url>            
+        </author>
+    </authors>
+    <default_language>en</default_language>
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+	<settings edition_type="ROOT,ULT:VENDOR">
+		<sections>
+		<section id="general">
+			<name>General</name>
+			<items>
+				<item id="sys">					
+					<type>header</type>							
+				</item>
+			</items>
+		</section>
+		</sections>
+	</settings>
+	<queries>       
+		<item for="install">
+			CREATE TABLE IF NOT EXISTS `?:csc_unite_orders` (
+				`name` varchar(255) COLLATE 'utf8_general_ci' NOT NULL,
+				`company_id` mediumint(8) NOT NULL DEFAULT '0',
+				`value` varchar(255) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '',
+				UNIQUE (`name`, `company_id`)
+			 ) ENGINE='InnoDB' COLLATE 'utf8_general_ci';
+		</item>		
+		<item for="uninstall">
+			DROP TABLE IF EXISTS `?:csc_unite_orders`;	
+		</item>		
+	</queries>		
+</addon>

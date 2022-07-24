@@ -1,0 +1,1 @@
+<a href="{"companies.update&company_id=`$oi.company_id`"|fn_url}">{$oi.company_id|fn_get_company_name}</a>

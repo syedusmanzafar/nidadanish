@@ -1,0 +1,1 @@
+{style src="addons/ab__product_fe05_facebook_ads/styles.less"}

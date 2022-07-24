@@ -1,0 +1,1 @@
+{script src="js/addons/sc_full_order/func.js"}

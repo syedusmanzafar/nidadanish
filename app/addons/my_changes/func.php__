@@ -1,0 +1,15 @@
+<?php
+
+if ( !defined('AREA') ) { die('Access denied'); }
+
+// Redirect customer to checkout when registering before checkout
+function fn_my_changes_login_user_post($user_id, $cu_id, $udata, $auth, $condition, $result)
+{
+    if (AREA == 'C') {
+        if ($udata['last_login'] == 0 && $cu_id != "") {
+            $_REQUEST['return_url'] = "checkout.checkout";
+        }
+    }
+}
+
+?>

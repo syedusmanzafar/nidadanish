@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>ec_vendor_cost</id>
+    <version>1.0.0</version>
+    <name>Ecarter: Vendor Price Markup</name>
+    <description>Allow admin to add markup on vendor price</description>
+    <priority>1010111</priority>
+    <position>0</position>
+    <status>active</status>
+    <has_icon>Y</has_icon>
+    <default_language>en</default_language>
+    <authors>
+        <author>
+            <name>Ecarter Technologies Pvt. Ltd.</name>
+            <email>support@ecarter.co</email>
+            <url>https://store.ecarter.co</url>
+        </author>
+    </authors>
+    <settings edition_type="ROOT,ULT:VENDOR">
+        <sections>
+            <section id="general">			
+                <items>				
+                    <item id="default_commission"> 
+                        <default_value>50</default_value>
+                        <type>input</type>			
+                    </item>
+                    <item id="default_commission_wholesale"> 
+                        <default_value>10</default_value>
+                        <type>input</type>			
+                    </item>
+                    <item id="wholesale_usergroup"> 
+                        <type>selectbox</type>			
+                    </item>
+                </items>
+                
+            </section>
+        </sections>
+    </settings>	
+    <queries>
+        <item>
+			ALTER TABLE `?:products` ADD `ec_commission` decimal(10,2) NOT NULL DEFAULT '0.0',  ADD `ec_retail_price` decimal(10,2) NOT NULL DEFAULT '0.0', ADD `ec_commission_wholesale` decimal(10,2) NOT NULL DEFAULT '0.0', ADD `ec_wholesale_price` decimal(10,2) NOT NULL DEFAULT '0.0';
+		</item>		
+		<item for="uninstall">
+			ALTER TABLE `?:products` DROP `ec_commission`, DROP `ec_retail_price`, DROP `ec_commission_wholesale`, DROP `ec_wholesale_price`,;
+		</item>		
+        <item>
+			ALTER TABLE `?:product_feature_variants` ADD `ec_commission` decimal(10,2) NOT NULL DEFAULT '0.0', ADD `ec_commission_wholesale` decimal(10,2) NOT NULL DEFAULT '0.0';
+		</item>		
+		<item for="uninstall">
+			ALTER TABLE `?:product_feature_variants` DROP `ec_commission`, DROP `ec_commission_wholesale`;
+		</item>		
+        <item>
+			ALTER TABLE `?:companies` ADD `ec_commission` decimal(10,2) NOT NULL DEFAULT '0.0', ADD `ec_commission_wholesale` decimal(10,2) NOT NULL DEFAULT '0.0';
+		</item>		
+		<item for="uninstall">
+			ALTER TABLE `?:companies` DROP `ec_commission`, DROP `ec_commission_wholesale`;
+		</item>
+        <item>
+			ALTER TABLE `?:categories` ADD `ec_commission` decimal(10,2) NOT NULL DEFAULT '0.0', ADD `ec_commission_wholesale` decimal(10,2) NOT NULL DEFAULT '0.0';
+		</item>		
+		<item for="uninstall">
+			ALTER TABLE `?:categories` DROP `ec_commission`, DROP `ec_commission_wholesale`;
+		</item>
+    </queries>
+</addon>

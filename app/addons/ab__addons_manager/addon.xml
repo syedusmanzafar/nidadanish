@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<addon scheme="3.0" edition_type="ROOT,ULT:VENDOR">
+<id>ab__addons_manager</id>
+<version>2.3.5</version>
+<priority>10</priority>
+<position>0</position>
+<status>active</status>
+<default_language>en</default_language>
+<ab>
+<hash>4a9b3adb4f43e9078ded06ca38b155474c890890, 2020-11-23 19:52:16</hash></ab>
+<authors>
+<author>
+<name>AlexBranding</name>
+<email>info@alexbranding.com</email>
+<url>https://alexbranding.com</url>
+</author>
+</authors>
+<supplier>AlexBranding</supplier>
+<supplier_link>https://cs-cart.alexbranding.com</supplier_link>
+<supplier_page>ab__am.addons</supplier_page>
+<compatibility>
+<core_version><min>4.10.1</min></core_version>
+<core_edition>ULTIMATE,MULTIVENDOR</core_edition>
+</compatibility>
+<settings layout="separate" edition_type="ROOT,ULT:VENDOR" >
+<sections>
+<section id="settings" edition_type="ROOT,ULT:VENDOR">
+<items>
+<item id="show_subscription"><type>checkbox</type><default_value>Y</default_value></item>
+<item id="code"><type>hidden</type><default_value>ABM-YBx4EktLFCZqP3AK5jovr</default_value></item>
+<item id="build"><type>hidden</type><default_value>735</default_value></item>
+</items>
+</section>
+</sections>
+</settings>
+<functions><item>fn_ab__am_install</item></functions>
+<queries>
+<item for="install">REPLACE INTO ?:privileges (privilege, is_default, section_id, group_id, is_view) VALUES ('ab__addons_manager.data.manage', 'Y', 'ab__addons', 'ab__addons_manager', 'N')</item>
+<item for="uninstall">DELETE FROM ?:privileges WHERE section_id = 'ab__addons_manager' OR group_id = 'ab__addons_manager'</item>
+</queries>
+</addon>

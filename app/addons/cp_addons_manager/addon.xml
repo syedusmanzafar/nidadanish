@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>cp_addons_manager</id>
+    <version>2.1</version>
+    <priority>1</priority>
+    <position>1</position>
+    <default_language>en</default_language>
+    <status>active</status>
+    <has_icon>Y</has_icon>
+    <supplier>Cart-Power</supplier>
+    <supplier_link>https://cart-power.com</supplier_link>
+    <authors>
+        <author>
+            <name>Cart-Power</name>
+            <email>sales@cart-power.com</email>
+            <url>https://cart-power.com</url>
+        </author>
+    </authors>
+    <settings>
+        <sections>
+            <section id="general" edition_type="ROOT">
+                <items>
+                    <item id="notify_me_about_new_versions">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="last_ping">
+                        <type>hidden</type>
+                    </item>
+                    <item id="flag">
+                        <type>hidden</type>
+                    </item>
+                    <item id="token">
+                        <type>hidden</type>
+                    </item>
+                </items>
+            </section>
+            <section id="logs" edition_type="ROOT">
+                <items>
+                    <item id="use_logs">
+                        <type>multiple checkboxes</type>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+    <queries>
+        <item for="install">REPLACE INTO ?:privileges (privilege, is_default, section_id) VALUES ('manage_cp_addons_manager', 'Y', 'addons');</item>
+        <item for="install">
+            CREATE TABLE IF NOT EXISTS `?:cp_custom_notifications` (
+                `hash` VARCHAR(32) NOT NULL DEFAULT '',
+                `message` TEXT NOT NULL DEFAULT '',
+                `type` VARCHAR(1) NOT NULL DEFAULT '',
+                `timestamp` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+                 PRIMARY KEY (`hash`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install" version="2.0">
+            CREATE TABLE IF NOT EXISTS `?:cp_custom_logs` (
+                `log_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                `user_id` int(11) NOT NULL DEFAULT 0,
+                `company_id` int(11) unsigned NOT NULL DEFAULT 0,
+                `timestamp` int(11) unsigned NOT NULL DEFAULT 0,
+                `section` varchar(32) NOT NULL DEFAULT '',
+                `action` varchar(64) NOT NULL DEFAULT '',
+                `content` text NOT NULL,
+                `extra` text NOT NULL,
+                PRIMARY KEY (`log_id`),
+                KEY (`company_id`, `section`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item for="uninstall">DELETE FROM ?:privileges WHERE privilege LIKE 'manage_cp_addons_manager'</item>
+        <item for="uninstall">DROP TABLE IF EXISTS `?:cp_custom_notifications`;</item>
+    </queries>
+    <functions>
+        <item for="install">fn_install_cp_addons_manager</item>
+    </functions>
+</addon>

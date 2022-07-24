@@ -1,0 +1,2 @@
+<?php
+ use Tygh\Registry; if (Registry::get('addons.sd_menu.hide_empty_categories') == 'Y') { $schema['menu']['cache']['update_handlers'][] = 'products'; $schema['menu']['cache']['update_handlers'][] = 'categories'; $schema['menu']['cache']['update_handlers'][] = 'products_categories'; } return $schema; 

@@ -1,0 +1,57 @@
+.cp_suborders{
+  background: #f8f8f8 !important;
+  padding:5px;
+}
+
+
+.cp_show_suborders{
+  font-size:15px;
+  color: red;
+}
+
+
+
+.cp-one-order{
+  &__header{
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-lc {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+  }
+  &__combination {
+    margin-right: 10px;
+  }
+  &__vendor {
+    margin-right: 10px;
+  }
+  &__order {
+    margin-right: 10px;
+  }
+  &__status {
+    display: flex;
+    align-items: center;
+    & > span {
+      margin-right: 5px;
+    }
+    .dropdown-toggle--text-wrap.btn-text {
+      margin-top: 0;
+    }
+    .dropdown-toggle--text-wrap .caret {
+      top: 5px;
+    }
+  }
+}
+
+
+.cp_status_one_order_admin{
+
+  display: inline;
+}

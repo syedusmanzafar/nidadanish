@@ -1,0 +1,8 @@
+@media only screen and (max-width: 450px) {
+.ty-sort-container__views-icons {
+    display: inline-block;
+    float: right;
+    width: 100%;
+    text-align: right;
+}
+}

@@ -1,0 +1,105 @@
+@font-face {
+    font-family: 'cp-am-icons';
+    src:  url('images/addons/cp_addons_manager/fonts/cp_icons.eot');
+    src:  url('images/addons/cp_addons_manager/fonts/cp_icons.eot#iefix') format('embedded-opentype'),
+        url('images/addons/cp_addons_manager/fonts/cp_icons.ttf') format('truetype'),
+        url('images/addons/cp_addons_manager/fonts/cp_icons.woff') format('woff'),
+        url('images/addons/cp_addons_manager/fonts/cp_icons.svg#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="cp-am-icon-"], [class*=" cp-am-icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'cp-am-icons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.cp-am-icon-success:before {
+    content: "\e900";
+}
+.cp-am-icon-fail:before {
+    content: "\e907";
+}
+.cp-am-icon-checked:before {
+    content: "\ea52";
+}
+.cp-am-icon-unchecked:before {
+    content: "\ea53";
+}
+.cp-am-icon-alert:before {
+    content: "\e908";
+    color: #ff7761;
+}
+.cp-am-icon-mark:before {
+    content: "\e901";
+    color: #10458f;
+}
+.cp-am-icon-cart:before {
+    content: "\e902";
+}
+.cp-am-icon-refresh:before {
+    content: "\e903";
+    color: #10458f;
+}
+.cp-am-icon-speech:before {
+    content: "\e904";
+    color: #10458f;
+}
+.cp-am-icon-pdf:before {
+    content: "\e905";
+    color: #10458f;
+}
+.cp-am-icon-printer:before {
+    content: "\e906";
+    color: #10458f;
+}
+.cp-am-icon-play-button:before {
+    content: "\e90b";
+    color: #7d7d7d;
+}
+.cp-am-icon-settings:before {
+    content: "\e90c";
+    color: #10458f;
+}
+.cp-am-icon-question:before {
+    content: "\e90d";
+    color: #10458f;
+}
+.cp-am-icon-is-on:before {
+    content: "\e90e";
+    color: #12c80e;
+}
+.cp-am-icon-is-off:before {
+    content: "\e90f";
+    color: #f71f1f;
+}
+.cp-am-icon-plugin:before {
+    content: "\e910";
+    color: #606060;
+}
+.cp-am-icon-shield:before {
+    content: "\e911";
+    color: #606060;
+}
+.cp-am-icon-web-design:before {
+    content: "\e912";
+    color: #10458f;
+}
+.cp-am-icon-group:before {
+    content: "\e913";
+    color: #10458f;
+}
+.cp-am-icon-heart:before {
+    content: "\e914";
+    color: #4b4b4b;
+}

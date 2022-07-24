@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<documents scheme="1.0">
+    <document>
+        <code><![CDATA[sc_one_order_t_admin]]></code>
+        <type><![CDATA[order]]></type>
+        <template/>
+        <default_template><![CDATA[{{ c.name }}
+            {{ O.INVOICE_ID_TEXT }}
+
+            {{__("ORDER_DATE")}} {{o.timestamp}}
+
+            {{__("PAYMENT")}} {{p.payment}}
+
+            {{__("SHIPPING")}} {{o.shippings_method}}
+
+            {% if o.tracking_number %}
+            {{__("TRACKING_NUMBER")}} {{o.tracking_number}}
+
+            {% endif %}
+
+            {{__("STORE")}}
+            {{c.name}}
+
+            {{ snippet("company_address") }}	{{ snippet("bill_to") }}	{% if pickup_point.is_selected %} {{ snippet("pickup_point") }} {% else %} {{ snippet("ship_to") }} {% endif %}
+            {{ snippet("products_table") }}
+            {% if o.notes %}
+            {{ __("CUSTOMER_NOTES") }}
+            {{ o.notes }} {% endif %}
+            {{ __("subtotal") }}	{{o.display_subtotal}}
+            {{O.TAX_NAME}}	{{o.tax_total}}
+            {{ __("shipping") }}	{{ o.display_shipping_cost }}
+            {% if o.payment_surcharge %}{{__("payment_surcharge")}} {% endif %}	{% if o.payment_surcharge %} {{o.payment_surcharge}} {% endif %}
+            {% if o.coupon_code %}{{ __("coupon") }} {% endif %}	{% if o.coupon_code %} {{o.coupon_code}} {% endif %}
+            {% if o.raw.discount %}{{ __("including_discount") }} {% endif %}	{% if o.raw.discount %} {{o.discount}} {% endif %}
+            {% if o.raw.subtotal_discount %}{{ __("order_discount") }} {% endif %}	{% if o.raw.subtotal_discount %} {{o.subtotal_discount}} {% endif %}
+            {{ __("total") }}	{{o.total}}]]>
+        </default_template>
+        <addon><![CDATA[sc_single_notice]]></addon>
+
+    </document>
+
+
+    <document>
+    <code><![CDATA[sc_one_order_t]]></code>
+    <type><![CDATA[order]]></type>
+    <template/>
+        <default_template>
+            <![CDATA[{{ c.name }}
+            {{ O.INVOICE_ID_TEXT }}
+
+            {{__("ORDER_DATE")}} {{o.timestamp}}
+
+            {{__("PAYMENT")}} {{p.payment}}
+
+            {{__("SHIPPING")}} {{o.shippings_method}}
+
+            {% if o.tracking_number %}
+            {{__("TRACKING_NUMBER")}} {{o.tracking_number}}
+
+            {% endif %}
+
+            {{__("STORE")}}
+            {{c.name}}
+
+            {{ snippet("company_address") }}	{{ snippet("bill_to") }}	{% if pickup_point.is_selected %} {{ snippet("pickup_point") }} {% else %} {{ snippet("ship_to") }} {% endif %}
+            {{ snippet("products_table") }}
+            {% if o.notes %}
+            {{ __("CUSTOMER_NOTES") }}
+            {{ o.notes }} {% endif %}
+            {{ __("subtotal") }}	{{o.display_subtotal}}
+            {{O.TAX_NAME}}	{{o.tax_total}}
+            {{ __("shipping") }}	{{ o.display_shipping_cost }}
+            {% if o.payment_surcharge %}{{__("payment_surcharge")}} {% endif %}	{% if o.payment_surcharge %} {{o.payment_surcharge}} {% endif %}
+            {% if o.coupon_code %}{{ __("coupon") }} {% endif %}	{% if o.coupon_code %} {{o.coupon_code}} {% endif %}
+            {% if o.raw.discount %}{{ __("including_discount") }} {% endif %}	{% if o.raw.discount %} {{o.discount}} {% endif %}
+            {% if o.raw.subtotal_discount %}{{ __("order_discount") }} {% endif %}	{% if o.raw.subtotal_discount %} {{o.subtotal_discount}} {% endif %}
+            {{ __("total") }}	{{o.total}}]]>
+        </default_template>
+        <addon><![CDATA[sc_single_notice]]></addon>
+
+    </document>
+
+
+</documents>

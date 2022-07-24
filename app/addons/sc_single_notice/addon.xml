@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>sc_single_notice</id>
+    <version>1.0</version>
+    <priority>20001</priority>
+    <position>130</position>
+    <default_language>en</default_language>
+    <status>active</status>
+
+
+    <email_templates>
+        <templates>
+            <item>
+                <code><![CDATA[sc_single_notice_email_admin]]></code>
+                <area><![CDATA[A]]></area>
+                <status><![CDATA[A]]></status>
+                <default_subject><![CDATA[{{ __("sc_single_notice.subject") }}]]></default_subject>
+                <default_template><![CDATA[{{ snippet("header", {"title": __("sc_single_notice.title_email") } ) }}
+
+{% if order_info.firstname %}
+{{__("hello_name", {"[name]" : order_info.firstname})}}
+{% else %}
+{{ __("hello") }},  {{ __("customer") }}
+{% endif %}
+ <br />
+{% if order_info.place_order%}
+{{ __("sc_single_notice.place_order") }}
+{% else %}
+    {% for info in order_info%}
+
+    {% if info.sc_order_id %}
+ {{__("sc_single_notice.change_status", {"[order_id]" : info.order_id , "[order_status]" : info.status_desr.description})}}
+    {% endif %}
+    {% endfor %}
+
+<ul style="margin: 0;">
+    {% for info in order_info%}
+    {% if info.sc_order_id is empty%}
+{% if info.status_desr.description %}
+<li>{{info.order_id}}&nbsp;&ndash;&nbsp;{{info.status_desr.description}}</li>
+{% endif %}
+    {% endif %}
+    {% endfor %}
+</ul>
+
+{% endif %}
+<br />
+ <br />
+<table width="100%" cellspacing="0" cellpadding="0" border="0" style="border-top: 3px solid #444; color: #444;border-collapse: separate;">
+            <tbody>
+
+            <tr>
+                <th style="padding:10px;width: 10%;text-align: center;text-transform:uppercase;border: none;">{{ __("order") }}</th>
+                <th style="padding:10px;width: 50%;text-align: center;text-transform:uppercase;border: none;">{{ __("description") }}</th>
+                <th style="padding:10px;width: 15%;text-align: center;text-transform:uppercase;border: none;">{{ __("amount") }}</th>
+            </tr>
+            {% for order in order_info%}
+                {% if order.info.order_id %}
+                    <tr>
+                        <td style="padding:10px;border-top:1px solid #ebebeb;vertical-align: top;text-align: center;">
+                            <strong>#{{order.info.order_id}}</strong>
+                        </td>
+
+                        <td style="padding:10px 10px 0; border-top: 1px solid #ebebeb;vertical-align:top;">
+                            {% for product in order.info.products%}
+                                <div style="margin-bottom: 10px;">
+                                    <a href="{{product.product_url}}"><strong>{{product.product}}</strong></a>
+                                    <br>
+                                    {{product.amount}}&nbsp;{{__("items")}}&nbsp;x&nbsp;{{product.price}}
+                                </div>
+                            {% endfor %}
+
+                            {% for shipping in order.info.shipping%}
+                            <div style="margin-bottom: 10px;">
+                                <strong>{{__("shipping_method")}}:</strong> {{shipping.shipping}} {% if shipping.rate %}&nbsp;&ndash;&nbsp;{{shipping.rate}}{% endif %}
+                            </div>
+                            {% endfor %}
+                        <strong>{{__("sc_mail_company")}}:</strong> {{order.company}}
+                        </td>
+
+                        <td style="padding:10px;border-top: 1px solid #ebebeb;vertical-align: top;text-align: center;">
+                            <strong>{{order.info.total}}</strong>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+    </table>
+{{ snippet("footer") }}]]></default_template>
+                <addon><![CDATA[sc_single_notice]]></addon>
+            </item>
+
+
+
+            <item>
+                <code><![CDATA[sc_single_notice_email]]></code>
+                <area><![CDATA[C]]></area>
+                <status><![CDATA[A]]></status>
+                <default_subject><![CDATA[{{ __("sc_single_notice.subject") }}]]></default_subject>
+                <default_template><![CDATA[{{ snippet("header", {"title": __("sc_single_notice.title_email") } ) }}
+
+{% if order_info.firstname %}
+{{__("hello_name", {"[name]" : order_info.firstname})}} 
+{% else %} 
+{{ __("hello") }},  {{ __("customer") }} 
+{% endif %}
+ <br />
+{% if order_info.place_order%}
+{{ __("sc_single_notice.place_order") }}
+{% else %}
+    {% for info in order_info%}
+
+    {% if info.sc_order_id %}
+ {{__("sc_single_notice.change_status", {"[order_id]" : info.order_id , "[order_status]" : info.status_desr.description})}}
+    {% endif %}
+    {% endfor %}
+
+<ul style="margin: 0;">
+    {% for info in order_info%}
+    {% if info.sc_order_id is empty%}
+{% if info.status_desr.description %}
+<li>{{info.order_id}}&nbsp;&ndash;&nbsp;{{info.status_desr.description}}</li>
+{% endif %}
+    {% endif %}
+    {% endfor %}
+</ul>
+
+{% endif %}
+<br />
+ <br />
+<table width="100%" cellspacing="0" cellpadding="0" border="0" style="border-top: 3px solid #444; color: #444;border-collapse: separate;">
+            <tbody>
+        
+            <tr>
+                <th style="padding:10px;width: 10%;text-align: center;text-transform:uppercase;border: none;">{{ __("order") }}</th>
+                <th style="padding:10px;width: 50%;text-align: center;text-transform:uppercase;border: none;">{{ __("description") }}</th>
+                <th style="padding:10px;width: 15%;text-align: center;text-transform:uppercase;border: none;">{{ __("amount") }}</th>
+            </tr>
+            {% for order in order_info%}
+                {% if order.info.order_id %}
+                    <tr>
+                        <td style="padding:10px;border-top:1px solid #ebebeb;vertical-align: top;text-align: center;">
+                            <strong>#{{order.info.order_id}}</strong>
+                        </td>
+        
+                        <td style="padding:10px 10px 0; border-top: 1px solid #ebebeb;vertical-align:top;">
+                            {% for product in order.info.products%}
+                                <div style="margin-bottom: 10px;">
+                                    <a href="{{product.product_url}}"><strong>{{product.product}}</strong></a>
+                                    <br>
+                                    {{product.amount}}&nbsp;{{__("items")}}&nbsp;x&nbsp;{{product.price}}
+                                </div>
+                            {% endfor %}
+                            
+                            {% for shipping in order.info.shipping%}
+                            <div style="margin-bottom: 10px;">
+                                <strong>{{__("shipping_method")}}:</strong> {{shipping.shipping}} {% if shipping.rate %}&nbsp;&ndash;&nbsp;{{shipping.rate}}{% endif %}
+                            </div>
+                            {% endfor %}
+                        <strong>{{__("sc_mail_company")}}:</strong> {{order.company}}
+                        </td>
+
+                        <td style="padding:10px;border-top: 1px solid #ebebeb;vertical-align: top;text-align: center;">
+                            <strong>{{order.info.total}}</strong>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+    </table>
+{{ snippet("footer") }}]]></default_template>
+                <addon><![CDATA[sc_single_notice]]></addon>
+            </item>
+        </templates>
+    </email_templates>
+
+</addon>

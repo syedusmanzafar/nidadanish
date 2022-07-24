@@ -1,0 +1,2 @@
+<?php
+ use Phinx\Migration\AbstractMigration; class AddonsSdLabelsAddFromParentField extends AbstractMigration { public function up() { $options = $this->adapter->getOptions(); $label_table = $options['prefix'] . 'product_sd_labels'; if ($this->hasTable($label_table)) { $table = $this->table($label_table); if (!$table->hasColumn('from_parent')) { $table->addColumn( 'from_parent', 'string', [ 'null' => false, 'default' => 'N', ] ); } $table->save(); } } }

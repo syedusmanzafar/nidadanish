@@ -1,0 +1,51 @@
+.sd-label-tooltip {
+    width: auto;
+    max-width: 300px;
+    background: @label-tooltip-background-color;
+    box-shadow: 0 -8px 44px 0 fade(@color-black, 8%), 0 -4px 16px 0 fade(@color-black, 16%);
+    border-radius: 5px;
+
+    &.top {
+        box-shadow: 0 8px 44px 0 fade(@color-black, 8%), 0 4px 16px 0 fade(@color-black, 16%);
+    }
+
+    &,
+    & p,
+    & li {
+        color: @label-tooltip-text-color;
+    }
+
+    ul,
+    li {
+        list-style: inherit;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        padding-left: 20px;
+    }
+
+    ol {
+        margin: 0;
+        padding: 0;
+        padding-left: 15px;
+        list-style: decimal;
+    }
+
+    & > .tooltip-arrow {
+        border-color: transparent transparent @label-tooltip-background-color transparent;
+    }
+
+    &.arrow-down.right > .tooltip-arrow {
+        border-color: transparent transparent transparent @label-tooltip-background-color;
+    }
+
+    &.arrow-down.top > .tooltip-arrow {
+        border-color: @label-tooltip-background-color transparent transparent transparent;
+    }
+
+    &.arrow-down.right.top > .tooltip-arrow {
+        border-color: @label-tooltip-background-color transparent transparent transparent;
+    }
+}

@@ -1,0 +1,10 @@
+#addon_sd_menuinstalled .bg-icon,
+#addon_sd_menu .bg-icon {
+    background-image: url('../../../media/images/addons/sd_menu/icon.png');
+    background-size: contain;
+}
+
+#addon_sd_menuinstalled .bg-icon i,
+#addon_sd_menu .bg-icon i {
+    display: none;
+}

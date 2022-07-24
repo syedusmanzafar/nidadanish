@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>ath_animate</id>
+    <version>1.8</version>
+    <!--  2020-12-21  -->
+    <default_language>en</default_language>
+    <priority>4294967293</priority>
+    
+    <authors>
+        <author>
+            <name>ThemeHills</name>
+            <email>themehills@gmail.com</email>
+            <url>https://themehills.com</url>
+        </author>
+    </authors>
+    
+    <supplier>ThemeHills</supplier>
+    <supplier_link>https://themehills.com/</supplier_link>
+    
+	<settings edition_type="ROOT,STOREFRONT">
+        <sections>
+            <section id="general">
+                <items>
+                    <item id="mobile">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                
+					<item id="grid">
+                        <type>selectbox</type>
+                        <default_value>bounceInUp</default_value>
+                    </item>
+                    
+                    <item id="list">
+                        <type>selectbox</type>
+                        <default_value>rotateInUpLeft</default_value>
+                    </item>
+                    
+                    <item id="compact_list">
+                        <type>selectbox</type>
+                        <default_value>fadeInLeft</default_value>
+                    </item>
+                </items>
+            </section>
+            <section id="activation" edition_type="ROOT"> 
+				<items>
+					<item id="license">
+						<type>input</type>
+					</item>
+				</items>
+			</section>
+        </sections>
+    </settings>
+    
+    <queries>
+        <item>ALTER TABLE `?:bm_snapping` ADD `anim_effect` varchar(16) NOT NULL,
+         ADD `anim_duration` varchar(16) NOT NULL,
+         ADD `anim_delay` varchar(16) NOT NULL,
+         ADD `anim_offset` varchar(16) NOT NULL,
+         ADD `anim_iteration` varchar(16) NOT NULL </item>
+         
+        <item for="uninstall">ALTER TABLE `?:bm_snapping` DROP `anim_effect`</item>
+        <item for="uninstall">ALTER TABLE `?:bm_snapping` DROP `anim_duration`</item>
+        <item for="uninstall">ALTER TABLE `?:bm_snapping` DROP `anim_delay`</item>
+        <item for="uninstall">ALTER TABLE `?:bm_snapping` DROP `anim_offset`</item>
+        <item for="uninstall">ALTER TABLE `?:bm_snapping` DROP `anim_iteration`</item>
+    </queries>
+    
+<marketplace_product_id>1273</marketplace_product_id><marketplace_license_number>MP-BQZ3-30OW-E2CQ-B70E</marketplace_license_number></addon>

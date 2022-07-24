@@ -1,0 +1,3 @@
+{if $po.option_type == "N"} {*number*}
+        <input id="option_{$id}_{$po.option_id}" type="text" name="{$name}[{$id}][product_options][{$po.option_id}]" value="{$po.value|default:$po.inner_hint}" {if $cp.exclude_from_calculate && !$product.aoc}disabled="disabled"{/if} class="input-text {if $po.inner_hint}cm-hint{/if}" {if $po.inner_hint}title="{$po.inner_hint}"{/if} onchange="fn_change_options('{$c_obj|default:$id}', {$id}, '{$po.option_id}');" />
+{/if}

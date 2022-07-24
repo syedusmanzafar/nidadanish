@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<addon scheme="3.0" edition_type="ROOT,ULT:VENDOR">
+    <id>rf_pro_marketing</id>
+    <version>1.7.0</version>
+    <priority>2000</priority>
+    <position>0</position>
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+    <has_icon>Y</has_icon>
+    <status>active</status>
+    <default_language>en</default_language>
+    <supplier>RetailFactory</supplier>
+    <supplier_link>https://retailfactory.ru</supplier_link>
+    <compatibility>
+        <php_version>
+            <min>7.0.0</min>
+        </php_version>
+    </compatibility>
+    <settings>
+        <sections>
+            <section id="general">
+                <items>
+                    <item id="license_number">
+                        <type>input</type>
+                    </item>
+                    <item id="facebook_settings">
+                        <type>header</type>
+                    </item>
+                    <item id="facebook_pixel_id">
+                        <type>input</type>
+                    </item>
+                    <item id="facebook_conversions_settings">
+                        <type>header</type>
+                    </item>
+                    <item id="fbc_token">
+                        <type>textarea</type>
+                    </item>
+                    <item id="fbc_events">
+                        <type>multiple checkboxes</type>
+                        <variants>
+                            <item id="fbc_events_viewcontent"></item>
+                            <item id="fbc_events_search"></item>
+                            <item id="fbc_events_addtocart"></item>
+                            <item id="fbc_events_addtowishlist"></item>
+                            <item id="fbc_events_checkout"></item>
+                            <item id="fbc_events_pageview"></item>
+                            <item id="fbc_events_purchase"></item>
+                            <item id="fbc_events_purchase_incomplete"></item>
+                            <item id="fbc_events_registration"></item>
+                        </variants>
+                    </item>
+                    <item id="fbc_product_id">
+                        <type>selectbox</type>
+                        <default_value>product_id</default_value>
+                        <variants></variants>
+                    </item>
+                    <item id="fbc_test_event_code_enable">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="fbc_test_event_code">
+                        <type>input</type>
+                        <default_value></default_value>
+                    </item>
+                    <item id="fbc_log_enable">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="google_remarketing_settings">
+                        <type>header</type>
+                    </item>
+                    <item id="conversion_id">
+                        <type>input</type>
+                    </item>
+                    <item id="conversion_label">
+                        <type>input</type>
+                    </item>
+                    <item id="gtag_product_id">
+                        <type>selectbox</type>
+                        <default_value>product_id</default_value>
+                        <variants></variants>
+                    </item>
+                    <item id="criteo_settings">
+                        <type>header</type>
+                    </item>
+                    <item id="criteo_id">
+                        <type>input</type>
+                    </item>
+                    <item id="tiktok_settings">
+                        <type>header</type>
+                    </item>
+                    <item id="tiktok_pixel">
+                        <type>input</type>
+                    </item>
+                    <item id="vk_settings">
+                        <type>header</type>
+                    </item>
+                    <item id="vk_pixel_id">
+                        <type>input</type>
+                    </item>
+                    <item id="vk_price_list_id">
+                        <type>input</type>
+                    </item>
+                    <item id="leadhit_settings">
+                        <type>header</type>
+                    </item>
+                    <item id="leadhit_id">
+                        <type>input</type>
+                    </item>
+                    <item id="affiliate_settings">
+                        <type>header</type>
+                    </item>
+                    <item id="tapfiliate_id">
+                        <type>input</type>
+                    </item>
+                    <item id="affiliatly_id">
+                        <type>input</type>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+</addon>

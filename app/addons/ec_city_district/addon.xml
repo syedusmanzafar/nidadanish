@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>ec_city_district</id>
+    <version>1.0</version>
+    <priority>1003251</priority>
+    <position>184512</position>
+    <status>active</status>
+    <has_icon>Y</has_icon>
+    <default_language>en</default_language>
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+    <supplier>Ecarter Technologies Pvt. Ltd.</supplier>
+    <supplier_link>https://ecarter.co</supplier_link>
+
+    <functions>
+        <item for="uninstall">fn_ec_city_district_uninstall</item>
+        <item for="install">fn_ec_city_district_install</item>
+    </functions>
+    <queries>
+        <item>DROP TABLE IF EXISTS `?:ec_district`</item>
+        <item>
+            CREATE TABLE IF NOT EXISTS `?:ec_district` (
+                `district_id` int(11) NOT NULL AUTO_INCREMENT,
+                `country_code` char(2) NOT NULL,
+                `state_code` varchar(32) NOT NULL,
+                `city_id` int(11) NOT NULL,
+                `status` char(1) NOT NULL,
+                PRIMARY KEY (`district_id`)
+            ) Engine=MyISAM DEFAULT CHARSET UTF8 AUTO_INCREMENT=1 ;
+        </item>
+        <item for="uninstall">DROP TABLE IF EXISTS `?:ec_district`</item>
+
+        <item>DROP TABLE IF EXISTS `?:ec_district_descriptions`</item>
+        <item>
+            CREATE TABLE IF NOT EXISTS `?:ec_district_descriptions` (
+                `district_id` int(11) NOT NULL,
+                `code` varchar(25) NOT NULL,
+                `lang_code` char(2) NOT NULL,
+                PRIMARY KEY (`district_id`, `lang_code`)
+            ) Engine=MyISAM DEFAULT CHARSET UTF8;
+        </item>
+        <item for="uninstall">DROP TABLE IF EXISTS `?:ec_district_descriptions`</item>
+        <item>
+			ALTER TABLE ?:users ADD COLUMN `district` varchar(55) NOT NULL DEFAULT '';
+		</item>
+        <item>
+			ALTER TABLE ?:user_profiles ADD COLUMN `s_district` varchar(55) NOT NULL DEFAULT '',ADD COLUMN `b_district` varchar(55) NOT NULL DEFAULT '';
+		</item>
+		<item for="uninstall">
+			ALTER TABLE ?:user_profiles DROP COLUMN `s_district`, DROP COLUMN `b_district`;
+		</item>
+        <item for="uninstall">
+			ALTER TABLE ?:users DROP COLUMN `district`;
+		</item>
+         <item>DROP TABLE IF EXISTS `?:ec_cities`</item>
+        <item>
+            CREATE TABLE IF NOT EXISTS `?:ec_cities` (
+                `city_id` int(11) NOT NULL AUTO_INCREMENT,
+                `state_code` varchar(25) NOT NULL,
+                `country_code` char(2) NOT NULL,
+                `state_id` int(11) NOT NULL,
+                `code` varchar(25) NOT NULL,
+                `status` char(1) NOT NULL,
+                PRIMARY KEY (`city_id`)
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+        </item>
+        <item>
+            CREATE TABLE IF NOT EXISTS `?:ec_cities_descriptions` (
+                `city_id` int(11) NOT NULL,
+                `code` varchar(25) NOT NULL,
+                `lang_code` char(2) NOT NULL,
+                PRIMARY KEY (`city_id`, `lang_code`)
+            ) Engine=MyISAM DEFAULT CHARSET UTF8;
+        </item>
+        <item for="uninstall">DROP TABLE IF EXISTS `?:ec_cities`</item>
+        <item for="uninstall">DROP TABLE IF EXISTS `?:ec_cities_descriptions`</item>
+    </queries>
+</addon>

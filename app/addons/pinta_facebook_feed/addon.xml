@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>pinta_facebook_feed</id>
+    <version>3.7</version>
+    <name>Facebook Feed Product</name>
+    <description>Facebook Feed Product by Pinta Webware</description>
+    <status>active</status>
+    <has_icon>Y</has_icon>
+    <supplier>Pinta Webware</supplier>
+    <supplier_link>https://shop.pinta.pro/cs-cart</supplier_link>
+    <default_language>en</default_language>
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+    <queries>
+        <item>DROP TABLE IF EXISTS ?:facebook_feed_settings;</item>
+        <item>DROP TABLE IF EXISTS ?:facebook_feed_google_category;</item>
+        <item>DROP TABLE IF EXISTS ?:facebook_feed_category;</item>
+        <item>
+            CREATE TABLE `?:facebook_feed_settings` (
+                `id` mediumint(8) unsigned NOT NULL auto_increment,
+            `company_id` INT NOT NULL,
+            `setting` text,
+                PRIMARY KEY (`id`), UNIQUE (`company_id`)
+            ) Engine=MyISAM DEFAULT CHARSET UTF8;
+        </item>
+        <item>
+            CREATE TABLE `?:facebook_feed_google_category` (
+				`id` int(11) NOT NULL AUTO_INCREMENT,
+				`google_category_id` int(11) NOT NULL,
+				`google_category_name` varchar(255) NOT NULL,
+				`google_category_parent` int(11) NOT NULL,
+				KEY `google_category_id` (`google_category_id`),
+				PRIMARY KEY `id` (`id`)
+            ) Engine=MyISAM DEFAULT CHARSET UTF8;
+        </item>
+        <item>
+            CREATE TABLE `?:facebook_feed_category` (
+                `google_category_id` int(11) NOT NULL,
+                `google_main_category_id` int(11) NOT NULL,
+                `category_id` int(11) NOT NULL,
+                 `company_id` INT NULL DEFAULT '0',
+				KEY `google_category_id` (`google_category_id`)
+            ) Engine=MyISAM DEFAULT CHARSET UTF8;
+        </item>
+        <item for="uninstall">DELETE FROM ?:privileges WHERE privilege LIKE 'manage_pinta_facebook_feed'</item>
+        <item for="uninstall">DELETE FROM ?:privileges WHERE privilege LIKE 'view_pinta_facebook_feed'</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:facebook_feed_settings;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:facebook_feed_google_category;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:facebook_feed_category;</item>
+    </queries>
+        <functions>
+        <item for="install">fn_facebook_feed_product_addon_install</item>
+    </functions>
+</addon>

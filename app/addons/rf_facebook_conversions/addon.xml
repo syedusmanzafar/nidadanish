@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<addon scheme="3.0" edition_type="ROOT,ULT:VENDOR">
+	<id>rf_facebook_conversions</id>
+	<version>1.4.1</version>
+	<status>active</status>
+	<priority>1000</priority>
+	<default_language>en</default_language>
+	<supplier>RetailFactory</supplier>
+	<supplier_link>https://retailfactory.ru</supplier_link>
+	<has_icon>Y</has_icon>
+	<core_edition>ULTIMATE,MULTIVENDOR</core_edition>
+	<settings layout="separate" edition_type="ROOT,VENDOR,STOREFRONT">
+		<sections>
+			<section id="general">
+				<items>
+					<item id="license_number">
+						<type>input</type>
+					</item>
+					<item id="token">
+						<type>textarea</type>
+						<default_value></default_value>
+					</item>
+					<item id="pixel_id">
+						<type>input</type>
+						<default_value></default_value>
+					</item>
+					<item id="log_enable">
+						<type>checkbox</type>
+						<default_value>Y</default_value>
+					</item>
+					<item id="test_event_code_enable">
+						<type>checkbox</type>
+						<default_value>Y</default_value>
+					</item>
+					<item id="test_event_code">
+						<type>input</type>
+						<default_value></default_value>
+					</item>
+				</items>
+			</section>
+			<section id="events">
+				<items>
+					<item id="viewcontent">
+						<type>checkbox</type>
+						<default_value>Y</default_value>
+					</item>
+					<item id="search">
+						<type>checkbox</type>
+						<default_value>Y</default_value>
+					</item>
+					<item id="addtocart">
+						<type>checkbox</type>
+						<default_value>Y</default_value>
+					</item>
+					<item id="addtowishlist">
+						<type>checkbox</type>
+						<default_value>Y</default_value>
+					</item>
+					<item id="checkout">
+						<type>checkbox</type>
+						<default_value>Y</default_value>
+					</item>
+					<item id="pageview">
+						<type>checkbox</type>
+						<default_value>Y</default_value>
+					</item>
+					<item id="purchase">
+						<type>checkbox</type>
+						<default_value>Y</default_value>
+					</item>
+					<item id="purchase_incomplete">
+						<type>checkbox</type>
+						<default_value>N</default_value>
+					</item>
+					<item id="registration">
+						<type>checkbox</type>
+						<default_value>Y</default_value>
+					</item>
+				</items>
+			</section>
+		</sections>
+	</settings>
+</addon>

@@ -1,0 +1,2 @@
+<?php
+ use Phinx\Migration\AbstractMigration; class AddonsSdLabelsAddAdditionalSettingsField extends AbstractMigration { public function up() { $options = $this->adapter->getOptions(); $pr = $options['prefix']; if ($this->hasTable("{$pr}sd_labels")) { $table = $this->table("{$pr}sd_labels"); if (!$table->hasColumn('additional_settings')) { $table->addColumn( 'additional_settings', 'text', [ 'null' => true, ] ); } $table->save(); } } } 

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<addon scheme='3.0'>
+    <id>wk_cybersource_payment</id>
+    <version>1.0</version>
+    <priority>111567</priority>
+    <position>184</position>
+    <status>active</status>
+    <has_icon>Y</has_icon>
+    <supplier>Webkul Software Pvt. Ltd.</supplier>
+    <supplier_link>https://store.webkul.com/CS-Cart.html</supplier_link>
+    <default_language>en</default_language>
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+    <functions>
+        <item for="install">fn_cyber_source_payment_install</item>
+        <item for="uninstall">fn_cyber_source_payment_uninstall</item>
+    </functions>
+</addon>

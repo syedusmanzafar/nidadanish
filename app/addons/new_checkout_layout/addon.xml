@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>new_checkout_layout</id>
+    <version>1.0</version>
+    <priority>1</priority>
+    <position>0</position>
+    <status>active</status>
+    <default_language>en</default_language>
+    <settings edition_type="ROOT,STOREFRONT">
+        <sections>
+            <section id="general">
+                <items>
+                    <item id="new_checkout_layout_information">
+                        <type>header</type>
+                    </item>
+                    <item id="new_checkout_layout_info">
+                        <type>template</type>
+                        <handler>fn_new_checkout_layout_get_information</handler>
+                        <default_value>setup_layout_steps.tpl</default_value>
+                    </item>
+                    <item id="new_checkout_layout_general_settings">
+                        <type>header</type>
+                    </item>
+                    <item id="settings_proxy">
+                        <type>info</type>
+                        <handler>fn_new_checkout_layout_checkout_settings_proxy</handler>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+    <functions>
+        <item for="uninstall">fn_new_checkout_layout_import_lite_checkout_layout</item>
+        <item for="uninstall">fn_new_checkout_layout_restore_checkout_address_position</item>
+    </functions>
+</addon>

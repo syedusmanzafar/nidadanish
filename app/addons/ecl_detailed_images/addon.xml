@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<addon scheme="2.0">
+    <id>ecl_detailed_images</id>
+    <name>[eCom Labs] Detailed Images Size</name>
+    <description>Allows to resize product detailed images during image upload</description>
+    <version>1.1</version>
+    <priority>4294967294</priority>
+    <position>0</position>
+    <status>active</status>
+    <supplier>eCom Labs</supplier>
+    <supplier_link>https://www.ecom-labs.com</supplier_link>
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+    <default_language>en</default_language>
+    <authors>
+        <author>
+            <name>eCom Labs</name>
+            <email>contact@ecom-labs.com</email>
+            <url>https://www.ecom-labs.com</url>
+            <phone>+7 963 234 30 03</phone>
+        </author>
+    </authors>
+    <settings edition_type="ROOT,ULT:VENDOR">
+        <sections>
+            <section id="general">
+                <name>Generic settings</name>
+                <translations>
+                    <item lang="ru" for="name">Настройки</item>
+                </translations>        
+                <items>
+                    <item id="image_width">
+                        <type>input</type>
+                        <name>Image width, px</name>
+                        <default_value></default_value>
+                        <translations>
+                            <item lang="ru" for="name">Ширина изображения, px</item>
+                        </translations>
+                    </item>            
+                    <item id="image_height">
+                        <type>input</type>
+                        <name>Image height, px</name>
+                        <default_value></default_value>
+                        <translations>
+                            <item lang="ru" for="name">Высота изображения, px</item>
+                        </translations>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+    <translations> 
+        <item for="description" lang="ru">Позволяет изменить размер детальных изображений товаров во время их загрузки</item>
+        <item for="name" lang="ru">[eCom Labs] Размер Детальных Изображений</item>
+    </translations>
+    <language_variables>
+        <item lang="en" id="resize_detailed_images">Resize detailed images</item>
+        <item lang="ru" id="resize_detailed_images">Изменить размер детальных изображений</item>
+    </language_variables>
+</addon>

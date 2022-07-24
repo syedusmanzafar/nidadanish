@@ -1,0 +1,1 @@
+Ability to send product code instead of product_id for Facebook Pixel and Google tag was added.

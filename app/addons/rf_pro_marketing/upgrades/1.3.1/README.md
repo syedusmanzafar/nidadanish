@@ -1,0 +1,1 @@
+Criteo integration: compatibility with one click order was added.

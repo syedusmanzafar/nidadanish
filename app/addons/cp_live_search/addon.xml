@@ -1,0 +1,486 @@
+<?xml version="1.0"?>
+<addon scheme='3.0'>
+    <id>cp_live_search</id>
+    <version>3.7</version>
+    <priority>100</priority>
+    <status>disabled</status>
+    <has_icon>Y</has_icon>
+    <authors>
+        <author>
+            <name>Cart-Power</name>
+            <email>sales@cart-power.com</email>
+            <url>https://cart-power.com</url>
+        </author>
+    </authors>
+    <supplier>Cart-Power</supplier>
+    <supplier_link>https://cart-power.com</supplier_link>
+    <default_language>en</default_language>
+    <compatibility>
+        <dependencies>cp_addons_manager</dependencies>
+    </compatibility>
+    <settings edition_type="ROOT,ULT:VENDOR,STOREFRONT">
+        <sections>
+            <section id="general">
+                <items>
+                    <item id="licensekey">
+                        <type>input</type>
+                        <default_value></default_value>
+                    </item>
+                    <item id="cron_password">
+                        <type>input</type>
+                        <default_value>PASSWORD</default_value>
+                    </item>
+                    <item id="record_search_history">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="letters_to_start">
+                        <type>input</type>
+                        <default_value>3</default_value>
+                    </item>
+                    <item id="search_delay">
+                        <type>input</type>
+                        <default_value>500</default_value>
+                    </item>
+                    <item id="items_limit">
+                        <type>input</type>
+                        <default_value>5</default_value>
+                    </item>
+                    <item id="show_ajax_loader">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="ajax_loader">
+                        <type>selectbox</type>
+                        <variants>
+                            <item id="loader_1"></item>
+                            <item id="loader_2"></item>
+                            <item id="loader_3"></item>
+                            <item id="loader_4"></item>
+                            <item id="loader_5"></item>
+                        </variants>
+                        <default_value>loader_1</default_value>
+                    </item>
+                    <item id="popup_mheight">
+                        <type>input</type>
+                        <default_value>600px</default_value>
+                    </item>
+                </items>
+            </section>
+            <section id="search_options">
+                <items>
+                    <item id="search_general_header">
+                        <type>header</type>
+                    </item>
+                    <item id="search_by_exact_phrase">
+                        <type>selectbox</type>
+                        <variants>
+                            <item id="all"></item>
+                            <item id="strict_all"></item>
+                            <item id="any"></item>
+                            <item id="exact_phrase"></item>
+                        </variants>
+                        <default_value>all</default_value>
+                    </item>
+                    <item id="speller">
+                        <type>selectbox</type>
+                        <variants>
+                            <item id="none"></item>
+                            <item id="yandex"></item>
+                        </variants>
+                        <default_value>none</default_value>
+                    </item>
+                    <item id="spell_amount">
+                        <type>input</type>
+                        <default_value>5</default_value>
+                    </item>
+                    <item id="search_in_short_description">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                        <tooltip>tt_search_in_short_description</tooltip>
+                    </item>
+                    <item id="search_in_full_description">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="search_in_keywords">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="search_by_product_code">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="search_by_categories">
+                        <type>selectbox</type>
+                        <variants>
+                            <item id="none"></item>
+                            <item id="in_categories"></item>
+                            <item id="in_categories_paths"></item>
+                        </variants>
+                        <default_value>none</default_value>
+                    </item>
+                    <item id="search_by_vendors">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="separate_common_products">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="q_ignore">
+                        <type>text</type>
+                    </item>
+                    <item id="search_synonym_part">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="search_cache_header">
+                        <type>header</type>
+                    </item>
+                    <item id="use_cache">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="ignore_symbols">
+                        <type>text</type>
+                    </item>
+                    <item id="order_results">
+                        <type>selectbox</type>
+                        <variants>
+                            <item id="weight"></item>
+                            <item id="popularity"></item>
+                            <item id="newest"></item>
+                            <item id="price_asc"></item>
+                            <item id="price_desc"></item>
+                            <item id="product"></item>
+                        </variants>
+                        <default_value>popularity</default_value>
+                    </item>
+                    <item id="searchinfeatures">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="searchinoptions">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="cache_info">
+                        <type>info</type>
+                        <handler>fn_cp_live_search_get_cache_link_info</handler>
+                    </item>
+                </items>
+            </section>
+            <section id="display_options">
+                <items>
+                    <item id="show_thumbnails">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="thumbnails_width">
+                        <type>input</type>
+                        <default_value>70</default_value>
+                    </item>
+                    <item id="thumbnails_height">
+                        <type>input</type>
+                        <default_value>70</default_value>
+                    </item>
+                    <item id="show_product_code">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="show_product_price">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="show_list_price">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="show_add_to_cart">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="show_add_to_wishlist">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="show_add_to_comparison_list">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="show_product_category">
+                        <type>selectbox</type>
+                        <variants>
+                            <item id="none"></item>
+                            <item id="group"></item>
+                            <item id="each"></item>
+                        </variants>
+                        <default_value>none</default_value>
+                    </item>
+                    <item id="show_category_labels">
+                        <type>selectbox</type>
+                        <variants>
+                            <item id="random"></item>
+                            <item id="assigned"></item>
+                        </variants>
+                        <default_value>none</default_value>
+                    </item>
+                    <item id="category_labels_colors">
+                        <type>input</type>
+                        <default_value></default_value>
+                    </item>
+                    <item id="style_settings">
+                        <type>hidden</type>
+                        <default_value></default_value>
+                    </item>
+                    <item id="use_suggestions">
+                        <type>selectbox</type>
+                        <variants>
+                            <item id="none"></item>
+                            <item id="auto"></item>
+                            <item id="search_phrases"></item>
+                            <item id="search_results"></item>
+                        </variants>
+                        <default_value>none</default_value>
+                    </item>
+                    <item id="suggestions_amount">
+                        <type>input</type>
+                        <default_value>5</default_value>
+                    </item>
+                    <item id="h_suggestions_letters">
+                        <type>input</type>
+                        <default_value>4</default_value>
+                    </item>
+                    <item id="h_suggestions_requests">
+                        <type>input</type>
+                        <default_value>10</default_value>
+                    </item>
+                    <item id="show_brands_result">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="brand_id">
+                        <type>selectbox</type>
+                        <default_value>none</default_value>
+                        <variants/>
+                    </item>
+                    <item id="brands_amount">
+                        <type>input</type>
+                        <default_value>5</default_value>
+                    </item>
+                    <item id="show_categories_result">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="show_categories_path">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                    <item id="categories_amount">
+                        <type>input</type>
+                        <default_value>5</default_value>
+                    </item>
+                    <item id="show_f_products_result">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="f_products_amount">
+                        <type>input</type>
+                        <default_value>5</default_value>
+                    </item>
+                    <item id="show_vendors_result">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="vendors_amount">
+                        <type>input</type>
+                        <default_value>5</default_value>
+                    </item>
+                    <item id="show_items">
+                        <type>multiple checkboxes</type>
+                        <variants/>
+                    </item>
+                    <item id="items_amount">
+                        <type>input</type>
+                        <default_value>5</default_value>
+                    </item>
+                </items>
+            </section>
+            <section id="search_motivation">
+                <items>
+                    <item id="use_sm">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="show_sm">
+                        <type>multiple checkboxes</type>
+                        <variants>
+                            <item id="sm_home"></item>
+                            <item id="sm_cart"></item>
+                            <item id="sm_checkout"></item>
+                            <item id="sm_profile"></item>
+                            <item id="sm_pages"></item>
+                            <item id="sm_categories"></item>
+                            <item id="sm_products"></item>
+                        </variants>
+                    </item>
+                    <item id="sm_info">
+                        <type>info</type>
+                        <handler>fn_cp_live_search_get_sm_link_info</handler>
+                    </item>
+                </items>
+            </section>
+            <section id="search_acceleration">
+                <items>
+                    <item id="use_boost">
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                    </item>
+                    <item id="index_cron_info">
+                        <type>info</type>
+                        <handler>fn_cp_live_search_get_index_cron_info</handler>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+    <queries>
+        <item for="install">ALTER TABLE `?:product_descriptions` ADD `stop_words` MEDIUMTEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;</item>
+        <item for="install">
+            CREATE TABLE IF NOT EXISTS `?:cp_search_history` (
+                `search_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+                `search` varchar(255) NOT NULL DEFAULT '',
+                `timestamp` int(11) unsigned NOT NULL DEFAULT 0,
+                `search_type` char(1) NOT NULL DEFAULT 'L',
+                `result` int(11) NOT NULL DEFAULT 0,
+                PRIMARY KEY (`search_id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install">
+            CREATE TABLE IF NOT EXISTS `?:cp_search_weight_rules` (
+                `rule_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+                `field` varchar(255) NOT NULL DEFAULT '',
+                `any` int(11) NOT NULL DEFAULT 1,
+                `before` int(11) NOT NULL DEFAULT 1,
+                `after` int(11) NOT NULL DEFAULT 1,
+                `none` int(11) NOT NULL DEFAULT 1,
+                PRIMARY KEY (`rule_id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install">
+            REPLACE INTO `?:cp_search_weight_rules` (`rule_id`, `field`, `any`, `before`, `after`, `none`) VALUES
+            (1, 'product', 20, 100, 20, 100),
+            (2, 'product_code', 10, 50, 10, 50),
+            (3, 'short_description', 5, 20, 5, 20),
+            (4, 'full_description', 2, 10, 2, 10),
+            (5, 'meta_keywords', 20, 100, 20, 100),
+            (6, 'meta_description', 20, 100, 20, 100);            
+        </item>
+
+        <item for="install" version="2.1">REPLACE INTO ?:privileges (privilege, is_default, section_id) VALUES ('manage_cp_live_search', 'Y', 'addons');</item>
+        <item for="install" version="2.1">REPLACE INTO ?:privileges (privilege, is_default, section_id) VALUES ('view_cp_live_search', 'N', 'addons');</item>
+
+        <item for="install" version="3.0">
+            CREATE TABLE IF NOT EXISTS `?:cp_search_motivation` (
+                `object_type` char(1) NOT NULL DEFAULT 'D',
+                `object_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+                `company_id` int(11) unsigned NOT NULL DEFAULT 0,
+                `lang_code` char(2) NOT NULL,
+                `content` text NOT NULL DEFAULT '',
+                PRIMARY KEY (`object_type`, `object_id`, `lang_code`, `company_id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install" version="3.0">
+            CREATE TABLE IF NOT EXISTS `?:cp_search_history_clicks` (
+                `search_id` int(11) unsigned NOT NULL DEFAULT 0,
+                `product_id` int(11) unsigned NOT NULL DEFAULT 0,
+                PRIMARY KEY (`search_id`, `product_id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install" version="3.0">
+            CREATE TABLE IF NOT EXISTS `?:cp_search_phrases` (
+                `phrase_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                `priority` int(11) NOT NULL DEFAULT 0,
+                `status` char(1) NOT NULL DEFAULT 'D',
+                `company_id` int(11) unsigned NOT NULL DEFAULT 0,
+                `lang_code` char(2) NOT NULL DEFAULT '',
+                `suggestions` text NOT NULL DEFAULT '',
+                PRIMARY KEY (`phrase_id`),
+                KEY `company_lang` (`company_id`, `lang_code`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install" version="3.0">
+            CREATE TABLE IF NOT EXISTS `?:cp_search_phrase_searchs` (
+                `phrase_id` int(11) unsigned NOT NULL DEFAULT 0,
+                `search` varchar(255) NOT NULL DEFAULT '',
+                PRIMARY KEY (`phrase_id`, `search`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install" version="3.0">
+            CREATE TABLE IF NOT EXISTS `?:cp_search_phrase_products` (
+                `phrase_id` int(11) NOT NULL DEFAULT 0,
+                `product_id` int(11) unsigned NOT NULL DEFAULT 0,
+                `position` int(11) NOT NULL DEFAULT 0,
+                PRIMARY KEY (`phrase_id`, `product_id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        
+        <item for="install" version="3.0">ALTER TABLE `?:cp_search_history` ADD `company_id` int(11) unsigned NOT NULL DEFAULT 0;</item>
+        <item for="install" version="3.0">ALTER TABLE `?:product_features` ADD `cp_ls_use` char(1) NOT NULL DEFAULT 'N';</item>
+        <item for="install" version="3.0">ALTER TABLE `?:cp_search_history` ADD `lang_code` char(2) NOT NULL DEFAULT '';</item>
+
+        <item for="install" version="3.0">ALTER TABLE `?:cp_search_history` ADD INDEX (`company_id`);</item>
+        <item for="install" version="3.0">ALTER TABLE `?:cp_search_history` ADD INDEX (`lang_code`);</item>
+        <item for="install" version="3.0">ALTER TABLE `?:cp_search_history` ADD INDEX (`search`);</item>
+
+        <item for="install" version="3.4">
+            CREATE TABLE IF NOT EXISTS `?:cp_search_synonyms` (
+                `synonym_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                `value` varchar(255) NOT NULL DEFAULT '',
+                `status` char(1) NOT NULL DEFAULT 'D',
+                `company_id` int(11) unsigned NOT NULL DEFAULT 0,
+                `lang_code` char(2) NOT NULL DEFAULT '',
+                PRIMARY KEY (`synonym_id`),
+                KEY `company_lang` (`company_id`, `lang_code`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install" version="3.4">
+            CREATE TABLE IF NOT EXISTS `?:cp_search_synonym_variants` (
+                `synonym_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                `variant` varchar(255) NOT NULL DEFAULT '',
+                PRIMARY KEY (`synonym_id`, `variant`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install" version="3.4">
+            ALTER TABLE `?:cp_search_history` CHANGE `search_id` `search_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+        </item>
+        
+        <item for="install" version="3.6">
+            ALTER TABLE `?:cp_search_history` ADD `storefront_id` int(11) unsigned NOT NULL DEFAULT 0;
+        </item>
+        
+        <item for="uninstall">DELETE FROM ?:privileges WHERE privilege = 'manage_cp_live_search'</item>
+        <item for="uninstall">DELETE FROM ?:privileges WHERE privilege = 'view_cp_live_search'</item>
+
+        <item for="uninstall">ALTER TABLE `?:product_descriptions` DROP `stop_words`;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS `?:cp_search_weight_rules`;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS `?:cp_search_history`;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS `?:cp_search_history_clicks`;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS `?:cp_search_motivation`;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS `?:cp_search_phrases`;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS `?:cp_search_phrase_searchs`;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS `?:cp_search_phrase_products`;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS `?:cp_search_synonyms`;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS `?:cp_search_synonym_variants`;</item>
+
+        <item for="uninstall">ALTER TABLE `?:product_features` DROP `cp_ls_use`;</item>
+    </queries>
+    <functions>
+        <item for="install">fn_install_cp_live_search</item>
+        <item for="uninstall">fn_uninstall_cp_live_search</item> 
+    </functions>
+    <scripts>
+        <item version="3.6">upgrades/3.6/scripts/post_script.php</item>
+    </scripts>
+</addon>

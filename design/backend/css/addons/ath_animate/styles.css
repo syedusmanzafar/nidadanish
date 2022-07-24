@@ -1,0 +1,41 @@
+
+#addon_ath_animateinstalled .bg-icon,
+#addon_ath_animate .bg-icon {
+    background-image: url('../../../media/images/addons/ath_animate/images/addon_icon.png');
+    background-size: contain;
+    background-color: transparent;
+    border: 0px;
+}
+#addon_ath_animateinstalled .bg-icon i,
+#addon_ath_animate .bg-icon i {
+    display: none;
+}
+
+
+
+
+.ath_animate-settings__items {
+	float: left;
+	width: 400px;
+}
+.ath_animate-settings__preview {
+	float: left;
+    padding: 112px 160px;
+    background: #0088cc;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-left: 30px;
+    overflow: hidden;
+}
+.ath_animate-settings__preview__block {
+	width: 60px;
+	height: 60px;
+	background: #fff;
+	border-radius: 2px;
+	display: block;
+}
+.ath_animate-settings__start-btn {
+    position: relative;
+    top: 10px;
+	float: right;
+}
