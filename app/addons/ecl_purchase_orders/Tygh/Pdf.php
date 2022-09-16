@@ -162,7 +162,7 @@ class Pdf
             // readfile($file);
             // fn_rm($file);
             // exit;
-            $filename = 'var/files/'.$filename;
+            $filename = 'var/files/1/'.$filename;
             fn_rename($file, $filename);
             fn_redirect('https://'.$_SERVER['HTTP_HOST'].'/'.$filename);
         }

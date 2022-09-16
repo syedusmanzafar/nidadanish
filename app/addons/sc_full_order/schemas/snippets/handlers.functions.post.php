@@ -116,6 +116,9 @@ function fn_sc_full_order_init_product_tables($snippet, $context, $variable_coll
     }
 
 
+
+    //fn_print_die($section_vendor_products);
+
     $variable_collection->add('section_vendor_products', $section_vendor_products);
 
     //$variable_collection->add('qqq_ttt', "sdfsdfsdfsdf");

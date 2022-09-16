@@ -60,6 +60,7 @@
 
                                             {if $order_info.display_shipping_cost|floatval}
                                                 {if $order_info.child_order_details_info}
+                                                    {*
                                                     <tr>
                                                         <td class="statistic-label">{__("shipping_cost")}:</td>
                                                         <td class="right">&nbsp;</td>
@@ -70,6 +71,7 @@
                                                             <td class="right" data-ct-totals="shipping_cost">{include file="common/price.tpl" value=$subitems.display_shipping_cost}</td>
                                                         </tr>
                                                     {/foreach}
+                                                    *}
                                                 {else}
                                                 <tr>
                                                     <td class="statistic-label">{__("shipping_cost")}:</td>

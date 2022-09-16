@@ -19,7 +19,7 @@
 <!--         <queries>
             <item>
                 ALTER TABLE `?:companies`
-                ADD COLUMN `payment_terms` varchar(255) NOT NULL default '';
+                ADD COLUMN `payment_terms` varchar(255) NOT NULL default '',
             </item>
     </queries> -->
 </addon>

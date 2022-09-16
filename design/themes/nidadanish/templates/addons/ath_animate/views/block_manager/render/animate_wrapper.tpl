@@ -1,3 +1,0 @@
-<div class="wow {$block.anim_effect} {if $block.user_class_wrapper} {$block.user_class_wrapper}{/if}{if $content_alignment == 'RIGHT'} ty-float-right{elseif $content_alignment == 'LEFT'} ty-float-left{/if}"{if $block.anim_duration} data-wow-duration="{$block.anim_duration}"{/if}{if $block.anim_delay} data-wow-delay="{$block.anim_delay}"{/if}{if $block.anim_offset} data-wow-offset="{$block.anim_offset}"{/if}{if $block.anim_iteration} data-wow-iteration="{$block.anim_iteration}"{/if}>		
-	{$block_inner nofilter}
-</div>

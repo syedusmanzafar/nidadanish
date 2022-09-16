@@ -116,7 +116,7 @@
 
                     {if $smarty.capture.$price|trim}
                         <div class="ty-product-block__price-actual teteete">
-                            {$smarty.capture.$price nofilter}<k>Inc.Vat</k>
+                            {$smarty.capture.$price nofilter}
                         </div>
                     {/if}
 

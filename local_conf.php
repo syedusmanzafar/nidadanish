@@ -1,7 +1,7 @@
 <?php
 
 // If you need to work on a live store, you can make the settings below apply to a certain IP only, so that the customers won't be affected. Specify your IP address instead of 127.0.0.1.
-if ($_SERVER['REMOTE_ADDR'] == '178.121.47.86') {
+if ($_SERVER['REMOTE_ADDR'] == '178.121.24.45') {
 
     // Turn on the Debug mode for the admin panel and the storefront
     // define('DEBUG_MODE', true);

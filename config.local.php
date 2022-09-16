@@ -33,7 +33,7 @@ if (!defined('CONSOLE')) {
 $config['db_host'] = 'database.cdoi8xgpxn6c.af-south-1.rds.amazonaws.com';
 $config['db_name'] = 'databaseprod';
 $config['db_user'] = 'admin';
-$config['db_password'] = 'Nidardsadmin21';
+$config['db_password'] = 'NidaDaniAdmin22$';
 
 $config['database_backend'] = 'mysqli';
 
