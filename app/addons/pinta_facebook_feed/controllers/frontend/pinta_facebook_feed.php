@@ -118,8 +118,6 @@ foreach ($products[0] as $product) {
         $auth,
         $company_id
     );
-
-
     $product_options = fn_facebook_feed_memcached(
         'product_options',
         $product['product_id'],
@@ -193,19 +191,19 @@ foreach ($products[0] as $product) {
             $desc_text = $prod_title;
         }
 
-//        if(isset($product_data['discounts'])){
-//            $product_data['ec_retail_price'] = $product_data['taxed_price'];
-//        } elseif(isset($product_data['list_discount'])) {
-//
-//        }
+        if(isset($product_data['discounts'])){
+            $product_data['ec_retail_price'] = $product_data['taxed_price'];
+        } elseif(isset($product_data['list_discount'])) {
+
+        }
 //         fn_print_die($product_data['ec_retail_price']);die;
 
         if (isset($a) && ($a != null) && count($a) >= 1) {
             $product_id = '';
 
             $price = $product['ec_retail_price'];
-            $price_fixed = round($product_data['price'] / $coefficient, 2);
-            $list_price_fixed = round($product_data['ec_retail_price'] / $coefficient, 2);
+            $price_fixed = round($product_data['ec_retail_price'] / $coefficient, 2);
+            $list_price_fixed = round($product_data['list_price'] / $coefficient, 2);
 
 
             $item = $channel_node->appendChild($xml->createElement("item"));
@@ -289,10 +287,11 @@ foreach ($products[0] as $product) {
             $title_text = $xml->createCDATASection( escapeXml( $prod_title));
             $title->appendChild($title_text);
 
-            if (floatval($list_price_fixed) < floatval($price_fixed) || $list_price_fixed === $price_fixed ) {
+            if (floatval($list_price_fixed) < floatval($price_fixed) || $list_price_fixed === $price_fixed) {
                 $price = $item->appendChild($xml->createElement("g:price", round($product['ec_retail_price'] / $coefficient, 2) . ' ' . $pinta_facebook_feed['currency_setting']));
-//            } elseif(floatval($list_price_fixed) > floatval($price_fixed) && (floatval($product['price']) === floatval($product['list_price']))){
-//                $price = $item->appendChild($xml->createElement("g:price", round($product['list_price'] / $coefficient, 2) . ' ' . $pinta_facebook_feed['currency_setting']));
+            } elseif(floatval($list_price_fixed) > floatval($price_fixed) && (floatval($product['price']) === floatval($product['list_price']))){
+                $price = $item->appendChild($xml->createElement("g:price", round($product['list_price'] / $coefficient, 2) . ' ' . $pinta_facebook_feed['currency_setting']));
+
             } else {
                 $item->appendChild($xml->createElement("g:sale_price",$price_fixed  . ' ' . $pinta_facebook_feed['currency_setting']));
                 $item->appendChild($xml->createElement("g:price",   $list_price_fixed. ' ' . $pinta_facebook_feed['currency_setting']));
@@ -321,8 +320,8 @@ foreach ($products[0] as $product) {
                 $id = $item->appendChild($xml->createElement("g:id", $product['product_id']));
                 $product = $product_data;
 
-                $price_fixed = round($product_data['price'] / $coefficient, 2);
-                $list_price_fixed = round($product_data['ec_retail_price'] / $coefficient, 2);
+                $price_fixed = round($product_data['ec_retail_price'] / $coefficient, 2);
+                $list_price_fixed = round($product_data['list_price'] / $coefficient, 2);
 
                 $title = $item->appendChild($xml->createElement("g:title"));
 //                $prod = $product['product'];
@@ -378,11 +377,10 @@ foreach ($products[0] as $product) {
                 $availability_value = mappingField(($product['amount'] > 0) ? 'in stock' : 'out of stock', 'mapping_availability', $product, $product_data, $pinta_facebook_feed);
                 $availability = $item->appendChild($xml->createElement("g:availability", $availability_value));
 //fn_print_die($product_data);die;
-                if (floatval($list_price_fixed) < floatval($price_fixed) || $list_price_fixed === $price_fixed ) {
+                if (floatval($list_price_fixed) < floatval($price_fixed) || $list_price_fixed === $price_fixed) {
                     $price = $item->appendChild($xml->createElement("g:price", round($product['ec_retail_price'] / $coefficient, 2) . ' ' . $pinta_facebook_feed['currency_setting']));
-
-//                } elseif(floatval($list_price_fixed) > floatval($price_fixed) && (floatval($product['price']) === floatval($product['list_price']))){
-//                    $price = $item->appendChild($xml->createElement("g:price", round($product['list_price'] / $coefficient, 2) . ' ' . $pinta_facebook_feed['currency_setting']));
+                } elseif(floatval($list_price_fixed) > floatval($price_fixed) && (floatval($product['price']) === floatval($product['list_price']))){
+                    $price = $item->appendChild($xml->createElement("g:price", round($product['list_price'] / $coefficient, 2) . ' ' . $pinta_facebook_feed['currency_setting']));
 
                 } else {
                     $item->appendChild($xml->createElement("g:sale_price",$price_fixed  . ' ' . $pinta_facebook_feed['currency_setting']));
@@ -431,7 +429,6 @@ function escapeXml(string $text)
 }
 function generationCategoriesStr(&$item,&$xml,$category_data,$lang_id)
 {
-
     if(empty($category_data)){
         return;
     }
@@ -463,7 +460,6 @@ function generationCategoriesFields(&$item,&$xml,$category_data,$lang_id)
        $explode = explode('/',$category_data['id_path']);
        foreach ($explode as $key => $element){
            $data = fn_get_category_data($element, $lang_id, $field_list = '', false);
-
            if(!empty($data)){
                if(isset($data['category']) && !empty($data['category'])) {
                    if($key < 5) {

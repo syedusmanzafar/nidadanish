@@ -92,7 +92,7 @@ class CombinedVariable implements IVariable
             $this->shippings_name_with_order_number = implode(', ', $shipping_methods);
             $this->shippings_name_without_order_number = implode(', ', $shipping_info_without);
 
-            $this->companies_name_with_order_number = implode(',</br> ', $companies_info);
+            $this->companies_name_with_order_number = implode(', ', $companies_info);
             $this->companies_name_without_order_number = implode(', ', $companies_info_without);
 
 

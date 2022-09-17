@@ -92,7 +92,7 @@
             <td width="6%" class="left mobile-hide">
 
                 <input type="checkbox" name="order_ids[]" value="{$suborder.order_id}" class="cm-item cm-item-status-{$suborder.status|lower} hide" /></td>
-            <td  class="sg_order_sub_row_padding"  width="15%" data-th="{__("id")}">
+            <td  style="padding-left: 20px;" width="15%" data-th="{__("id")}">
                 <a href="{"orders.details?order_id=`$suborder.order_id`"|fn_url}" class="underlined">{__("order")} <bdi>#{$suborder.order_id}</bdi></a>
                 {if $suborderrder_statuses[$suborder.status].params.appearance_type == "I" && $suborder.invoice_id}
                     <p class="muted">{__("invoice")} #{$suborder.invoice_id}</p>

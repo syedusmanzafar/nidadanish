@@ -159,6 +159,9 @@ if ($mode == 'update') {
         ),
     ));
     $rates = db_get_hash_array('SELECT * FROM ?:tax_rates WHERE tax_id = ?i', 'destination_id', $_REQUEST['tax_id']);
+    $destinations = array_filter($destinations, static function ($destination) use ($rates) {
+        return isset($rates[$destination['destination_id']]);
+    });
 
     Tygh::$app['view']->assign('tax', $tax);
     Tygh::$app['view']->assign('rates', $rates);

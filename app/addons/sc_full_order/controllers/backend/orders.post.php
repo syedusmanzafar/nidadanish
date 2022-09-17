@@ -50,6 +50,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
+if ($mode == 'last_id') {
+	
+	
+	
+	exit('dfdfd');
+	
+	fn_print_r("template_snippets",db_get_field("SELECT snippet_id FROM ?:template_snippets ORDER BY snippet_id DESC LIMIT 1 ")); 
+
+
+	fn_print_r("template_snippet_descriptions",db_get_field("SELECT snippet_id FROM ?:template_snippet_descriptions ORDER BY snippet_id DESC LIMIT 1 "));
+
+	
+	
+	fn_print_r("template_table_columns",db_get_field("SELECT column_id FROM ?:template_table_columns ORDER BY column_id DESC LIMIT 1 "));
+
+	fn_print_die("template_table_column_descriptions",db_get_field("SELECT column_id FROM ?:template_table_column_descriptions ORDER BY column_id DESC LIMIT 1 "));
+	
+	
+}
+
+
 if ($mode == 'manage') {
 
     $orders = Tygh::$app['view']->getTemplateVars('orders');

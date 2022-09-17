@@ -3,7 +3,7 @@
         <span class="ty-cart-statistic__title">{__("subtotal")}</span>
         <span class="ty-cart-statistic__value">{include file="common/price.tpl" value=$cart.display_subtotal}</span>
     </li>
-    
+
     {hook name="checkout:checkout_totals"}
         {$show_shipping_estimation = ($location != "cart" || $settings.Checkout.estimate_shipping_cost == "YesNo::YES"|enum)}
         {if $cart.shipping_required == true}
@@ -25,13 +25,13 @@
             </li>
         {/if}
     {/hook}
-    
+
     {if ($cart.discount|floatval)}
     <li class="ty-cart-statistic__item ty-statistic-list-discount">
         <span class="ty-cart-statistic__title">{__("including_discount")}</span>
         <span class="ty-cart-statistic__value discount-price">-{include file="common/price.tpl" value=$cart.discount}</span>
     </li>
-    
+
     {/if}
 
     {if ($cart.subtotal_discount|floatval)}
